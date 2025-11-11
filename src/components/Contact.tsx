@@ -1,16 +1,54 @@
+import { useState } from "react";
 import { Mail, MapPin, Clock, Send } from "lucide-react";
 
-function SendMessage() {
-  alert("Opening WhatsApp to contact me.");
-
-  console.log("Clicked");
-}
-
 export default function Contact() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    business: "",
+    package: "Starter Package",
+    message: "",
+  });
+
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
+  ) => {
+    const { id, value } = e.target;
+    setFormData((prev) => ({ ...prev, [id]: value }));
+  };
+
+  const SendMessage = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+
+    const { name, email, business, package: pkg, message } = formData;
+
+    // ✅ Your WhatsApp number (no "+" or spaces)
+    const phoneNumber = "27766395871"; // Example for South Africa (+27)
+
+    const text = encodeURIComponent(
+      `Hello! My name is ${name}.
+Email: ${email}
+Business: ${business || "N/A"}
+Interested in: ${pkg}
+Message: ${message}`
+    );
+
+    // Detect mobile vs desktop
+    const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    const whatsappURL = isMobile
+      ? `whatsapp://send?phone=${phoneNumber}&text=${text}`
+      : `https://wa.me/${phoneNumber}?text=${text}`;
+
+    window.open(whatsappURL, "_blank");
+  };
+
   return (
     <section id="contact" className="py-20 bg-slate-50">
       <div className="container mx-auto px-6">
         <div className="max-w-6xl mx-auto">
+          {/* ===== Header Section ===== */}
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
               Let's Build Something Great Together
@@ -22,7 +60,9 @@ export default function Contact() {
             </p>
           </div>
 
+          {/* ===== Contact Info + Form ===== */}
           <div className="grid md:grid-cols-2 gap-12">
+            {/* Left Side - Info */}
             <div>
               <h3 className="text-2xl font-bold text-slate-900 mb-6">
                 Get In Touch
@@ -35,6 +75,7 @@ export default function Contact() {
               </p>
 
               <div className="space-y-6">
+                {/* Email */}
                 <div className="flex items-start gap-4">
                   <div className="w-12 h-12 bg-emerald-100 rounded-lg flex items-center justify-center flex-shrink-0">
                     <Mail className="w-6 h-6 text-emerald-600" />
@@ -50,6 +91,7 @@ export default function Contact() {
                   </div>
                 </div>
 
+                {/* Location */}
                 <div className="flex items-start gap-4">
                   <div className="w-12 h-12 bg-emerald-100 rounded-lg flex items-center justify-center flex-shrink-0">
                     <MapPin className="w-6 h-6 text-emerald-600" />
@@ -62,6 +104,7 @@ export default function Contact() {
                   </div>
                 </div>
 
+                {/* Response Time */}
                 <div className="flex items-start gap-4">
                   <div className="w-12 h-12 bg-emerald-100 rounded-lg flex items-center justify-center flex-shrink-0">
                     <Clock className="w-6 h-6 text-emerald-600" />
@@ -75,6 +118,7 @@ export default function Contact() {
                 </div>
               </div>
 
+              {/* Fiverr Section */}
               <div className="mt-8 bg-gradient-to-br from-emerald-50 to-cyan-50 rounded-xl p-6 border border-emerald-200">
                 <h4 className="font-bold text-slate-900 mb-3">
                   Find Me On Other Platforms
@@ -84,7 +128,9 @@ export default function Contact() {
                   quick projects and ongoing website maintenance.
                 </p>
                 <a
-                  href=""
+                  href="https://www.fiverr.com/s/R7KwNXL" // TODO: Replace with your Fiverr link
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-emerald-600 hover:text-emerald-700 font-semibold inline-flex items-center gap-2"
                 >
                   Connect on Fiverr
@@ -93,11 +139,13 @@ export default function Contact() {
               </div>
             </div>
 
+            {/* Right Side - Form */}
             <div className="bg-white rounded-2xl p-8 border border-slate-200 shadow-lg">
               <h3 className="text-2xl font-bold text-slate-900 mb-6">
                 Send Me a Message
               </h3>
               <form className="space-y-6">
+                {/* Name */}
                 <div>
                   <label
                     htmlFor="name"
@@ -108,11 +156,14 @@ export default function Contact() {
                   <input
                     type="text"
                     id="name"
+                    value={formData.name}
+                    onChange={handleChange}
                     className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition-all"
                     placeholder="John Smith"
                   />
                 </div>
 
+                {/* Email */}
                 <div>
                   <label
                     htmlFor="email"
@@ -123,11 +174,14 @@ export default function Contact() {
                   <input
                     type="email"
                     id="email"
+                    value={formData.email}
+                    onChange={handleChange}
                     className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition-all"
                     placeholder="john@example.com"
                   />
                 </div>
 
+                {/* Business */}
                 <div>
                   <label
                     htmlFor="business"
@@ -138,11 +192,14 @@ export default function Contact() {
                   <input
                     type="text"
                     id="business"
+                    value={formData.business}
+                    onChange={handleChange}
                     className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition-all"
                     placeholder="Your Company Name"
                   />
                 </div>
 
+                {/* Package */}
                 <div>
                   <label
                     htmlFor="package"
@@ -152,6 +209,8 @@ export default function Contact() {
                   </label>
                   <select
                     id="package"
+                    value={formData.package}
+                    onChange={handleChange}
                     className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition-all"
                   >
                     <option>Starter Package</option>
@@ -161,6 +220,7 @@ export default function Contact() {
                   </select>
                 </div>
 
+                {/* Message */}
                 <div>
                   <label
                     htmlFor="message"
@@ -171,15 +231,18 @@ export default function Contact() {
                   <textarea
                     id="message"
                     rows={5}
+                    value={formData.message}
+                    onChange={handleChange}
                     className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition-all resize-none"
                     placeholder="Tell me about your project, goals, timeline, and any specific requirements..."
                   ></textarea>
                 </div>
 
+                {/* WhatsApp Button */}
                 <button
                   type="submit"
-                  className="w-full bg-emerald-500 hover:bg-emerald-600 text-white font-semibold py-4 rounded-lg transition-colors flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/20"
                   onClick={SendMessage}
+                  className="w-full bg-emerald-500 hover:bg-emerald-600 text-white font-semibold py-4 rounded-lg transition-colors flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/20"
                 >
                   Send Message On WhatsApp
                   <Send className="w-5 h-5" />
@@ -188,6 +251,7 @@ export default function Contact() {
             </div>
           </div>
 
+          {/* ===== Call-to-Action Section ===== */}
           <div className="mt-16 bg-gradient-to-br from-slate-900 to-slate-800 rounded-2xl p-8 md:p-12 text-white text-center">
             <h3 className="text-2xl md:text-3xl font-bold mb-4">
               Ready to Get Started?
