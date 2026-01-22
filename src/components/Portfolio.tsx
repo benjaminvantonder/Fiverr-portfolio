@@ -103,61 +103,6 @@ export default function Portfolio() {
               </div>
             </div>
           </div>
-
-          <blockquote className="border-l-4 border-emerald-500 pl-6 py-2">
-            <p className="text-lg text-slate-700 italic mb-3">
-              "Benjamin was a pleasure to work with. He took our rough ideas and
-              turned them into a sleek, easy-to-navigate site that truly
-              reflects our brand. The attention to detail is outstanding."
-            </p>
-            <footer className="text-slate-600 font-semibold">
-              — Creative Director, Boutique Design Studio
-            </footer>
-          </blockquote>
-
-          <blockquote className="border-l-4 border-emerald-500 pl-6 py-2">
-            <p className="text-lg text-slate-700 italic mb-3">
-              "What impressed us most was how proactive Benjamin was. He
-              suggested improvements we hadn’t even thought of, and the final
-              result far exceeded expectations."
-            </p>
-            <footer className="text-slate-600 font-semibold">
-              — Founder, Nonprofit Organization
-            </footer>
-          </blockquote>
-
-          <blockquote className="border-l-4 border-emerald-500 pl-6 py-2">
-            <p className="text-lg text-slate-700 italic mb-3">
-              "Our old site was slow and dated—Benjamin completely transformed
-              it. We’re now seeing more engagement and better SEO rankings
-              within weeks of launch."
-            </p>
-            <footer className="text-slate-600 font-semibold">
-              — Marketing Manager, E-Commerce Brand
-            </footer>
-          </blockquote>
-
-          <blockquote className="border-l-4 border-emerald-500 pl-6 py-2">
-            <p className="text-lg text-slate-700 italic mb-3">
-              "Benjamin is that rare combination of technical skill and design
-              sensibility. He handled everything from UI tweaks to hosting
-              optimization with total professionalism."
-            </p>
-            <footer className="text-slate-600 font-semibold">
-              — Product Lead, SaaS Company
-            </footer>
-          </blockquote>
-
-          <blockquote className="border-l-4 border-emerald-500 pl-6 py-2">
-            <p className="text-lg text-slate-700 italic mb-3">
-              "Clear communication, smart design choices, and on-time delivery.
-              Couldn’t ask for a smoother process. We’ll definitely be working
-              together again."
-            </p>
-            <footer className="text-slate-600 font-semibold">
-              — Project Manager, Digital Agency
-            </footer>
-          </blockquote>
         </div>
       </div>
     </section>
