@@ -1,4 +1,4 @@
-import { Award, BookOpen, Briefcase, Target } from 'lucide-react';
+import { GitFork, Code2, Gamepad2, Globe } from 'lucide-react';
 
 export default function About() {
   return (
@@ -11,71 +11,71 @@ export default function About() {
             </h2>
             <div className="w-20 h-1 bg-emerald-500 mx-auto mb-6"></div>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-              A passionate developer with a proven track record of delivering high-quality web solutions
+              A self-taught developer from South Africa who loves building things for the web
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
             <div>
               <h3 className="text-3xl font-bold text-slate-900 mb-6">
-                Turning Vision Into Reality
+                Hi, I'm Benjamin
               </h3>
               <p className="text-lg text-slate-700 leading-relaxed mb-6">
-                My name is Benjamin van Tonder, and at 18 years old, I've already spent four years immersed in the world of programming and web development. What started as a curiosity about how websites work has evolved into a genuine passion and a thriving freelance business serving clients both locally and internationally.
+                I started coding in early 2023, and since then I've published 12 open-source projects on GitHub spanning web apps, games, and developer tools. My work ranges from React + TypeScript websites to C++ graphics experiments and game development with raylib.
               </p>
               <p className="text-lg text-slate-700 leading-relaxed mb-6">
-                Throughout my journey, I've worked with diverse clients ranging from small local businesses looking to establish their first online presence, to international companies seeking to enhance their digital footprint. This experience has taught me not just how to code, but how to truly understand business needs and translate them into effective web solutions.
+                I'm passionate about helping local service businesses — plumbers, electricians, contractors, and trades — get online with fast, professional websites that actually bring in leads. No complicated CMS, no bloated frameworks. Just clean, static sites that load instantly and rank well.
               </p>
               <p className="text-lg text-slate-700 leading-relaxed">
-                I specialize in creating static websites that load instantly, perform flawlessly across all devices, and are optimized for search engines. My approach combines modern development practices with a deep understanding of what makes websites not just look good, but actually work for businesses.
+                My tech stack includes TypeScript, React, Tailwind CSS, and Vite. I also work with C/C++ for lower-level projects and game development. I believe in writing simple, maintainable code that solves real problems.
               </p>
             </div>
 
             <div className="grid grid-cols-2 gap-6">
               <div className="bg-slate-50 rounded-xl p-6 border border-slate-200 hover:border-emerald-500 transition-colors">
-                <Briefcase className="w-10 h-10 text-emerald-500 mb-4" />
-                <h4 className="text-xl font-bold text-slate-900 mb-2">Professional Experience</h4>
-                <p className="text-slate-600">4 years of hands-on development work with real clients and real projects</p>
+                <GitFork className="w-10 h-10 text-emerald-500 mb-4" />
+                <h4 className="text-xl font-bold text-slate-900 mb-2">12 Repos</h4>
+                <p className="text-slate-600">Public projects on GitHub spanning web dev, games, and tools</p>
               </div>
               <div className="bg-slate-50 rounded-xl p-6 border border-slate-200 hover:border-emerald-500 transition-colors">
-                <BookOpen className="w-10 h-10 text-emerald-500 mb-4" />
-                <h4 className="text-xl font-bold text-slate-900 mb-2">Continuous Learning</h4>
-                <p className="text-slate-600">Starting Computer Science studies next year to deepen technical expertise</p>
+                <Code2 className="w-10 h-10 text-emerald-500 mb-4" />
+                <h4 className="text-xl font-bold text-slate-900 mb-2">TypeScript</h4>
+                <p className="text-slate-600">Primary language — used in 5 of my public repositories</p>
               </div>
               <div className="bg-slate-50 rounded-xl p-6 border border-slate-200 hover:border-emerald-500 transition-colors">
-                <Target className="w-10 h-10 text-emerald-500 mb-4" />
-                <h4 className="text-xl font-bold text-slate-900 mb-2">Results-Driven</h4>
-                <p className="text-slate-600">Every website is built with your business goals and user experience in mind</p>
+                <Gamepad2 className="w-10 h-10 text-emerald-500 mb-4" />
+                <h4 className="text-xl font-bold text-slate-900 mb-2">Game Dev</h4>
+                <p className="text-slate-600">Built Orc-TD and graphics experiments with raylib and SDL2</p>
               </div>
               <div className="bg-slate-50 rounded-xl p-6 border border-slate-200 hover:border-emerald-500 transition-colors">
-                <Award className="w-10 h-10 text-emerald-500 mb-4" />
-                <h4 className="text-xl font-bold text-slate-900 mb-2">Quality Focused</h4>
-                <p className="text-slate-600">Clean code, modern design, and attention to every detail</p>
+                <Globe className="w-10 h-10 text-emerald-500 mb-4" />
+                <h4 className="text-xl font-bold text-slate-900 mb-2">Locally Focused</h4>
+                <p className="text-slate-600">Serving South African small businesses and contractors</p>
               </div>
             </div>
           </div>
 
           <div className="bg-gradient-to-br from-emerald-50 to-cyan-50 rounded-2xl p-8 md:p-12 border border-emerald-200">
             <h3 className="text-2xl md:text-3xl font-bold text-slate-900 mb-6">
-              Why Choose Me for Your Web Development Needs?
+              What I Work With
             </h3>
             <div className="grid md:grid-cols-2 gap-8">
               <div>
-                <h4 className="text-xl font-bold text-slate-900 mb-3">Technical Excellence</h4>
+                <h4 className="text-xl font-bold text-slate-900 mb-3">Web Development</h4>
                 <p className="text-slate-700 leading-relaxed mb-4">
-                  I build websites using React and TypeScript—industry-standard technologies trusted by companies like Facebook, Netflix, and Airbnb. This means your website is built on a solid foundation using the same tools that power the world's most successful digital platforms. My code is clean, maintainable, and follows best practices that ensure your website remains easy to update and scale as your business grows.
+                  React, TypeScript, Tailwind CSS, Vite — modern tooling that produces fast, static sites. I build component-based layouts that are easy to maintain and extend. No page builders, no WordPress, no unnecessary complexity.
                 </p>
                 <p className="text-slate-700 leading-relaxed">
-                  Every line of code I write is crafted with performance in mind. Static site generation ensures your website loads in milliseconds, not seconds. This isn't just about speed—it's about user experience, search engine rankings, and ultimately, your bottom line. Studies show that even a one-second delay in page load time can result in a 7% reduction in conversions.
+                  Every site I build is fully responsive, SEO-optimized, and designed to load in under a second. I focus on the fundamentals: clean markup, semantic HTML, and performance-first architecture.
                 </p>
               </div>
               <div>
-                <h4 className="text-xl font-bold text-slate-900 mb-3">Business Understanding</h4>
+                <h4 className="text-xl font-bold text-slate-900 mb-3">Game Development & Systems</h4>
                 <p className="text-slate-700 leading-relaxed mb-4">
-                  I don't just build websites; I build business solutions. Having worked with both local small businesses and international clients, I understand that different businesses have different needs. A local restaurant needs something completely different from an e-commerce startup or a consulting firm. I take the time to understand your specific goals, your target audience, and what success looks like for your business.
+                  Beyond the web, I enjoy working with C, C++, raylib, and SDL2. My Orc-TD project is a tower defense game built in JavaScript, and my graphics repos explore low-level rendering concepts. This cross-domain experience gives me a deeper understanding of how software works at every level.
                 </p>
                 <p className="text-slate-700 leading-relaxed">
-                  My experience across diverse industries means I can bring insights and best practices from one sector to another, giving you the benefit of proven strategies. I focus on creating websites that don't just look professional, but actively work to achieve your business objectives—whether that's generating leads, showcasing your portfolio, or establishing credibility in your market.
+                  GitHub: <a href="https://github.com/benjaminvantonder" target="_blank" rel="noopener noreferrer" className="text-emerald-600 hover:text-emerald-700 font-semibold">github.com/benjaminvantonder</a>
                 </p>
               </div>
             </div>

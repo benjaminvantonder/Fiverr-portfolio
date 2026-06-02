@@ -1,58 +1,82 @@
-import { ExternalLink, Zap, Globe, TrendingUp } from "lucide-react";
+import { ExternalLink, Github } from "lucide-react";
+
+const projects = [
+  {
+    title: "Stellerindustries",
+    description: "A business website built for a client — clean, responsive landing page with modern design",
+    tags: ["HTML", "CSS", "Business"],
+    url: "https://benjaminvantonder.github.io/Stellerindustries/",
+    repo: "https://github.com/benjaminvantonder/Stellerindustries",
+  },
+  {
+    title: "lokkie-bos",
+    description: "Web application project showcasing interactive UI and responsive design patterns",
+    tags: ["TypeScript", "React", "Web App"],
+    url: "https://benjaminvantonder.github.io/lokkie-bos/",
+    repo: "https://github.com/benjaminvantonder/lokkie-bos",
+  },
+  {
+    title: "Orc-TD",
+    description: "Tower defense game built from scratch — enemy waves, defense placement, and game mechanics",
+    tags: ["JavaScript", "Game", "HTML5"],
+    url: "https://orc-fbmnsyka3-jeprochs-projects.vercel.app/",
+    repo: "https://github.com/benjaminvantonder/Orc-TD",
+  },
+  {
+    title: "fuhri-server-coordinates",
+    description: "Coordinate tracking utility for game servers — real-time position data visualization",
+    tags: ["TypeScript", "Utility", "Real-time"],
+    url: "https://benjaminvantonder.github.io/fuhri-server-coordinates/",
+    repo: "https://github.com/benjaminvantonder/fuhri-server-coordinates",
+  },
+  {
+    title: "Learn-html",
+    description: "An interactive learning platform for HTML fundamentals — built to help beginners get started with web development",
+    tags: ["TypeScript", "Education", "Interactive"],
+    url: "https://html4u.vercel.app",
+    repo: "https://github.com/benjaminvantonder/Learn-html",
+  },
+  {
+    title: "To-Do App",
+    description: "A clean, functional task management app with local storage persistence and intuitive UI",
+    tags: ["JavaScript", "Productivity", "Vanilla JS"],
+    url: "https://to-do-app-nu-snowy.vercel.app",
+    repo: "https://github.com/benjaminvantonder/To-Do-app",
+  },
+];
 
 export default function Portfolio() {
-  const projects = [
-    {
-      title: "Local Lighting show business",
-      category: "Entertainemnt and Aesthetics",
-      description:
-        "Developed a modern, creative website for a local Lighting show business with online services display, location finder, and contact forms. The mobile-responsive design increased online reservations by 45% within the first month.",
-      tags: ["React", "Mobile-First", "SEO Optimized"],
-    },
-    {
-      title: "Architect based in south africa",
-      category: "Landing page",
-      description:
-        "Developed and still maintain an architect''s landing page. Not only do I develop these websites to fit customer needs, I also expand and mold it into their perfect website over time.",
-      tags: ["React", "Business", "Landing pages"],
-    },
-  ];
-
   return (
-    <section id="portfolio" className="py-20 bg-slate-50">
+    <section id="portfolio" className="py-20 bg-white">
       <div className="container mx-auto px-6">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
-              Portfolio & Case Studies
+              Projects & Work
             </h2>
             <div className="w-20 h-1 bg-emerald-500 mx-auto mb-6"></div>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-              Real projects, real results. Here's a glimpse of the work I've
-              delivered for satisfied clients
+              A selection of projects I've built — from client sites to open-source tools and games
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 mb-16">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {projects.map((project, index) => (
               <div
                 key={index}
-                className="bg-white rounded-xl overflow-hidden border border-slate-200 hover:border-emerald-500 hover:shadow-xl transition-all duration-300"
+                className="bg-white rounded-xl overflow-hidden border border-slate-200 hover:border-emerald-500 hover:shadow-xl transition-all duration-300 flex flex-col"
               >
-                <div className="bg-gradient-to-br from-emerald-500 to-cyan-500 h-48 flex items-center justify-center">
-                  <Globe className="w-20 h-20 text-white opacity-50" />
+                <div className="bg-gradient-to-br from-slate-800 to-slate-900 h-40 flex items-center justify-center">
+                  <Github className="w-16 h-16 text-slate-600" />
                 </div>
-                <div className="p-8">
-                  <div className="text-sm font-semibold text-emerald-600 mb-2">
-                    {project.category}
-                  </div>
-                  <h3 className="text-2xl font-bold text-slate-900 mb-4">
+                <div className="p-6 flex flex-col flex-grow">
+                  <h3 className="text-xl font-bold text-slate-900 mb-3">
                     {project.title}
                   </h3>
-                  <p className="text-slate-600 leading-relaxed mb-6">
+                  <p className="text-slate-600 leading-relaxed mb-4 flex-grow">
                     {project.description}
                   </p>
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-2 mb-4">
                     {project.tags.map((tag, tagIndex) => (
                       <span
                         key={tagIndex}
@@ -62,46 +86,27 @@ export default function Portfolio() {
                       </span>
                     ))}
                   </div>
+                  <div className="flex gap-3">
+                    <a
+                      href={project.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-1 text-sm font-semibold text-emerald-600 hover:text-emerald-700"
+                    >
+                      <ExternalLink className="w-4 h-4" /> Live
+                    </a>
+                    <a
+                      href={project.repo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-1 text-sm font-semibold text-slate-600 hover:text-slate-800"
+                    >
+                      <Github className="w-4 h-4" /> Source
+                    </a>
+                  </div>
                 </div>
               </div>
             ))}
-          </div>
-
-          <div className="bg-white rounded-2xl p-8 md:p-12 border border-slate-200 shadow-lg mb-16">
-            <h3 className="text-2xl md:text-3xl font-bold text-slate-900 mb-6">
-              The Impact of Professional Web Development
-            </h3>
-            <p className="text-lg text-slate-700 leading-relaxed mb-6">
-              These aren't just websites—they're business tools that deliver
-              measurable results. Each project represents a partnership where I
-              worked closely with the client to understand their goals and
-              deliver a solution that exceeded expectations. From increasing
-              online visibility to generating leads and boosting conversions,
-              the websites I build actively contribute to business growth.
-            </p>
-            <div className="grid md:grid-cols-3 gap-8">
-              <div className="text-center p-6 bg-slate-50 rounded-lg">
-                <Zap className="w-12 h-12 text-emerald-500 mx-auto mb-4" />
-                <div className="text-3xl font-bold text-slate-900 mb-2">
-                  Under 1s
-                </div>
-                <div className="text-slate-600">Average Load Time</div>
-              </div>
-              <div className="text-center p-6 bg-slate-50 rounded-lg">
-                <TrendingUp className="w-12 h-12 text-emerald-500 mx-auto mb-4" />
-                <div className="text-3xl font-bold text-slate-900 mb-2">
-                  35%+
-                </div>
-                <div className="text-slate-600">Average Traffic Increase</div>
-              </div>
-              <div className="text-center p-6 bg-slate-50 rounded-lg">
-                <Globe className="w-12 h-12 text-emerald-500 mx-auto mb-4" />
-                <div className="text-3xl font-bold text-slate-900 mb-2">
-                  100%
-                </div>
-                <div className="text-slate-600">Mobile Responsive</div>
-              </div>
-            </div>
           </div>
         </div>
       </div>
