@@ -2,13 +2,6 @@ import { ExternalLink, Github } from "lucide-react";
 
 const projects = [
   {
-    title: "Stellerindustries",
-    description: "A business website built for a client — clean, responsive landing page with modern design",
-    tags: ["HTML", "CSS", "Business"],
-    url: "https://benjaminvantonder.github.io/Stellerindustries/",
-    repo: "https://github.com/benjaminvantonder/Stellerindustries",
-  },
-  {
     title: "lokkie-bos",
     description: "Web application project showcasing interactive UI and responsive design patterns",
     tags: ["TypeScript", "React", "Web App"],
@@ -16,32 +9,22 @@ const projects = [
     repo: "https://github.com/benjaminvantonder/lokkie-bos",
   },
   {
-    title: "Orc-TD",
-    description: "Tower defense game built from scratch — enemy waves, defense placement, and game mechanics",
-    tags: ["JavaScript", "Game", "HTML5"],
-    url: "https://orc-fbmnsyka3-jeprochs-projects.vercel.app/",
-    repo: "https://github.com/benjaminvantonder/Orc-TD",
+    title: "Stellerindustries",
+    description: "Business website for Steller Industries — a clean, professional landing page",
+    tags: ["HTML", "CSS", "Business"],
+    url: "https://stellerindustries.co.za",
   },
   {
-    title: "fuhri-server-coordinates",
-    description: "Coordinate tracking utility for game servers — real-time position data visualization",
-    tags: ["TypeScript", "Utility", "Real-time"],
-    url: "https://benjaminvantonder.github.io/fuhri-server-coordinates/",
-    repo: "https://github.com/benjaminvantonder/fuhri-server-coordinates",
+    title: "CertSA",
+    description: "Emergency response team website",
+    tags: ["React", "TypeScript", "Web App"],
+    url: "https://certsa.org",
   },
   {
-    title: "Learn-html",
-    description: "An interactive learning platform for HTML fundamentals — built to help beginners get started with web development",
-    tags: ["TypeScript", "Education", "Interactive"],
-    url: "https://html4u.vercel.app",
-    repo: "https://github.com/benjaminvantonder/Learn-html",
-  },
-  {
-    title: "To-Do App",
-    description: "A clean, functional task management app with local storage persistence and intuitive UI",
-    tags: ["JavaScript", "Productivity", "Vanilla JS"],
-    url: "https://to-do-app-nu-snowy.vercel.app",
-    repo: "https://github.com/benjaminvantonder/To-Do-app",
+    title: "orcTD-raylib",
+    description: "Tower defense game built with raylib in C — classic gameplay with custom mechanics",
+    tags: ["C", "raylib", "Game"],
+    url: "https://github.com/benjaminvantonder/orcTD-raylib",
   },
 ];
 
@@ -87,22 +70,26 @@ export default function Portfolio() {
                     ))}
                   </div>
                   <div className="flex gap-3">
-                    <a
-                      href={project.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-1 text-sm font-semibold text-emerald-600 hover:text-emerald-700"
-                    >
-                      <ExternalLink className="w-4 h-4" /> Live
-                    </a>
-                    <a
-                      href={project.repo}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-1 text-sm font-semibold text-slate-600 hover:text-slate-800"
-                    >
-                      <Github className="w-4 h-4" /> Source
-                    </a>
+                    {project.url && (
+                      <a
+                        href={project.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-1 text-sm font-semibold text-emerald-600 hover:text-emerald-700"
+                      >
+                        <ExternalLink className="w-4 h-4" /> Live
+                      </a>
+                    )}
+                    {project.repo && (
+                      <a
+                        href={project.repo}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-1 text-sm font-semibold text-slate-600 hover:text-slate-800"
+                      >
+                        <Github className="w-4 h-4" /> Source
+                      </a>
+                    )}
                   </div>
                 </div>
               </div>
