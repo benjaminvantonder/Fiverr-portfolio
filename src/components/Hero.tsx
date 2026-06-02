@@ -2,8 +2,11 @@ import { Code2, Globe, ChevronRight } from 'lucide-react';
 
 export default function Hero() {
   return (
-    <section className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white overflow-hidden">
-      <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iMC4wMyI+PHBhdGggZD0iTTM2IDE2YzAtMy4zMTQgMi42ODYtNiA2LTZzNi02LjY4NiA2LTZ2NmMwIDMuMzE0LTIuNjg2IDYtNiA2cy02IDIuNjg2LTYgNnYtNnoiLz48L2c+PC9nPjwvc3ZnPg==')] opacity-40"></div>
+    <section className="relative bg-slate-950 text-white overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-900/80 to-slate-800/10"></div>
+      <div className="blur-orb w-[600px] h-[600px] bg-emerald-500 -top-40 -right-40"></div>
+      <div className="blur-orb w-[500px] h-[500px] bg-cyan-500 -bottom-40 -left-40"></div>
+      <div className="blur-orb w-[300px] h-[300px] bg-emerald-400/30 top-1/3 left-1/4"></div>
 
       <nav className="relative z-10 container mx-auto px-6 py-6">
         <div className="flex items-center justify-between">
@@ -52,8 +55,6 @@ export default function Hero() {
           </div>
         </div>
       </div>
-
-      <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-white to-transparent"></div>
     </section>
   );
 }
