@@ -4,7 +4,7 @@ const steps = [
   {
     icon: MessageSquare,
     title: 'Discovery Call',
-    description: 'We talk about your business, your goals, and who you want to reach. I ask questions to understand what success looks like for you — more calls? More quote requests? A stronger local presence?'
+    description: 'I start by understanding your business and who you want to reach — whether you\'re a contractor needing more quote requests, a local shop wanting foot traffic, or a service business that needs phone calls. I ask the questions that make sure the site drives real results for you.'
   },
   {
     icon: Pencil,
@@ -46,6 +46,25 @@ export default function Process() {
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
               A straightforward process from start to launch
             </p>
+          </div>
+
+          <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-6 mb-10">
+            <div className="flex items-start gap-4">
+              <div className="w-10 h-10 bg-emerald-500 rounded-full flex items-center justify-center text-white font-bold text-base flex-shrink-0 mt-0.5">
+                !
+              </div>
+              <div>
+                <h4 className="font-bold text-emerald-800 text-lg mb-1">
+                  Quick Fix projects
+                </h4>
+                <p className="text-emerald-700 leading-relaxed">
+                  I send 2–3 design directions &rarr; you pick one &rarr; I
+                  build and refine &rarr; it&rsquo;s live in 5–7 days. No
+                  lengthy process, just a fast turnaround for Solo traders
+                  and one-pagers.
+                </p>
+              </div>
+            </div>
           </div>
 
           <div className="space-y-8">

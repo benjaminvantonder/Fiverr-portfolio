@@ -6,7 +6,6 @@ export default function Hero() {
       <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-900/80 to-slate-800/10"></div>
       <div className="blur-orb w-[600px] h-[600px] bg-emerald-500 -top-40 -right-40"></div>
       <div className="blur-orb w-[500px] h-[500px] bg-cyan-500 -bottom-40 -left-40"></div>
-      <div className="blur-orb w-[300px] h-[300px] bg-emerald-400/30 top-1/3 left-1/4"></div>
 
       <nav className="relative z-10 container mx-auto px-6 py-6">
         <div className="flex items-center justify-between">

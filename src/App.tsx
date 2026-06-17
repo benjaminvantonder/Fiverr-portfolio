@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import { HashRouter, Routes, Route } from "react-router-dom";
 import Lenis from "lenis";
 import Hero from "./components/Hero";
-import MockSites from "./components/MockSites";
+import RecentWork from "./components/RecentWork";
 import About from "./components/About";
 import Services from "./components/Services";
 import Process from "./components/Process";
@@ -10,7 +10,6 @@ import Portfolio from "./components/Portfolio";
 import Pricing from "./components/Pricing";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
-import MockSitePage from "./components/MockSitePage";
 
 if (typeof history !== "undefined" && "scrollRestoration" in history) {
   history.scrollRestoration = "manual";
@@ -56,7 +55,7 @@ function Home() {
   return (
     <div className="min-h-screen bg-white">
       <Hero />
-      <MockSites />
+      <RecentWork />
       <About />
       <Services />
       <Process />
@@ -73,7 +72,6 @@ function App() {
     <HashRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/mock/:siteId" element={<MockSitePage />} />
       </Routes>
     </HashRouter>
   );

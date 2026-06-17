@@ -47,7 +47,7 @@ export default function Portfolio() {
             {projects.map((project, index) => (
               <div
                 key={index}
-                className="bg-white rounded-xl overflow-hidden border border-slate-200 hover:border-emerald-500 hover:shadow-xl transition-all duration-300 flex flex-col"
+                className="bg-white rounded-xl overflow-hidden border border-slate-200 hover:shadow-lg transition-shadow duration-300 flex flex-col"
               >
                 <div className="bg-gradient-to-br from-slate-800 to-slate-900 h-40 flex items-center justify-center">
                   <Github className="w-16 h-16 text-slate-600" />

@@ -87,7 +87,7 @@ Message: ${message}`
                   </div>
                   <div>
                     <h4 className="font-bold text-slate-900 mb-1">Location</h4>
-                    <p className="text-slate-600">South Africa — serving local and international clients</p>
+                    <p className="text-slate-600">South Africa — based locally, working with South African small businesses.</p>
                   </div>
                 </div>
 
@@ -102,7 +102,7 @@ Message: ${message}`
                 </div>
               </div>
 
-              <div className="mt-8 bg-gradient-to-br from-emerald-50 to-cyan-50 rounded-xl p-6 border border-emerald-200">
+              <div className="mt-8 bg-emerald-50 rounded-xl p-6 border border-emerald-200">
                 <h4 className="font-bold text-slate-900 mb-3">Check My Work</h4>
                 <p className="text-slate-700 mb-4">
                   All my projects are open-source on GitHub. Browse the code, see what I'm building, and get a sense of my style.

@@ -32,22 +32,22 @@ export default function About() {
             </div>
 
             <div className="grid grid-cols-2 gap-6">
-              <div className="bg-slate-50 rounded-xl p-6 border border-slate-200 hover:border-emerald-500 transition-colors">
+              <div className="bg-slate-50 rounded-xl p-6 border border-slate-200">
                 <GitFork className="w-10 h-10 text-emerald-500 mb-4" />
                 <h4 className="text-xl font-bold text-slate-900 mb-2">12 Repos</h4>
                 <p className="text-slate-600">Public projects on GitHub spanning web dev, games, and tools</p>
               </div>
-              <div className="bg-slate-50 rounded-xl p-6 border border-slate-200 hover:border-emerald-500 transition-colors">
+              <div className="bg-slate-50 rounded-xl p-6 border border-slate-200">
                 <Code2 className="w-10 h-10 text-emerald-500 mb-4" />
                 <h4 className="text-xl font-bold text-slate-900 mb-2">TypeScript</h4>
                 <p className="text-slate-600">Primary language — used in 5 of my public repositories</p>
               </div>
-              <div className="bg-slate-50 rounded-xl p-6 border border-slate-200 hover:border-emerald-500 transition-colors">
+              <div className="bg-slate-50 rounded-xl p-6 border border-slate-200">
                 <Gamepad2 className="w-10 h-10 text-emerald-500 mb-4" />
                 <h4 className="text-xl font-bold text-slate-900 mb-2">Game Dev</h4>
                 <p className="text-slate-600">Built Orc-TD and graphics experiments with raylib and SDL2</p>
               </div>
-              <div className="bg-slate-50 rounded-xl p-6 border border-slate-200 hover:border-emerald-500 transition-colors">
+              <div className="bg-slate-50 rounded-xl p-6 border border-slate-200">
                 <Globe className="w-10 h-10 text-emerald-500 mb-4" />
                 <h4 className="text-xl font-bold text-slate-900 mb-2">Locally Focused</h4>
                 <p className="text-slate-600">Serving South African small businesses and contractors</p>
@@ -55,7 +55,7 @@ export default function About() {
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-emerald-50 to-cyan-50 rounded-2xl p-8 md:p-12 border border-emerald-200">
+          <div className="bg-emerald-50 rounded-2xl p-8 md:p-12 border border-emerald-200">
             <h3 className="text-2xl md:text-3xl font-bold text-slate-900 mb-6">
               What I Work With
             </h3>
