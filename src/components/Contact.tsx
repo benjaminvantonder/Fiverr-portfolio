@@ -6,7 +6,7 @@ export default function Contact() {
     name: "",
     email: "",
     business: "",
-    package: "Quick Fix (One-Pager)",
+    package: "Business Website (R3,500)",
     message: "",
   });
 
@@ -188,9 +188,7 @@ Message: ${message}`
                     onChange={handleChange}
                     className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition-all"
                   >
-                    <option>Quick Fix (One-Pager)</option>
-                    <option>Standard Business Site</option>
-                    <option>Growth Premium Site</option>
+                    <option>Business Website (R3,500)</option>
                     <option>Monthly Care Plan</option>
                     <option>Just Have Questions</option>
                   </select>

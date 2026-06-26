@@ -55,13 +55,13 @@ export default function Process() {
               </div>
               <div>
                 <h4 className="font-bold text-emerald-800 text-lg mb-1">
-                  Quick Fix projects
+                  Fast turnaround
                 </h4>
                 <p className="text-emerald-700 leading-relaxed">
                   I send 2–3 design directions &rarr; you pick one &rarr; I
                   build and refine &rarr; it&rsquo;s live in 5–7 days. No
-                  lengthy process, just a fast turnaround for Solo traders
-                  and one-pagers.
+                  lengthy process, just a fast turnaround for your new
+                  website.
                 </p>
               </div>
             </div>

@@ -1,60 +1,6 @@
-import { useState } from "react";
-import { Shield, Clock, Wrench, ChevronDown } from "lucide-react";
-
-const tiers = [
-  {
-    name: "The Quick Fix",
-    subtitle: "One-Pager",
-    priceZAR: "R3,500 – R6,000",
-    priceUSD: "$200 – $350",
-    description:
-      'Perfect for replacing a "Coming Soon" page or getting a solo trader online fast',
-    features: [
-      "Single-page landing site",
-      "Contact form & Google Maps",
-      "Mobile optimized",
-      "Basic SEO setup",
-      "Fast static hosting",
-    ],
-  },
-  {
-    name: "Standard Business Site",
-    subtitle: "3–6 Pages",
-    priceZAR: "R7,500 – R15,000",
-    priceUSD: "$400 – $800",
-    description:
-      "A proper business website for contractors, trades, and local service businesses",
-    features: [
-      "Home, About, Services, Gallery, Contact",
-      "Mobile-responsive design",
-      "On-page SEO optimization",
-      "Social media integration",
-      "Contact forms & lead capture",
-      "Performance optimized",
-    ],
-    popular: true,
-  },
-  {
-    name: "Growth Premium",
-    subtitle: "7+ Pages",
-    priceZAR: "R18,000 – R30,000+",
-    priceUSD: "$1,000 – $1,600+",
-    description:
-      "Full digital presence with advanced local targeting and booking integration",
-    features: [
-      "Service area pages",
-      "Advanced local SEO",
-      "Booking/scheduling integration",
-      "Custom animations & interactions",
-      "Analytics integration",
-      "Priority support & maintenance",
-    ],
-  },
-];
+import { Shield, Clock, Wrench } from "lucide-react";
 
 export default function Pricing() {
-  const [accordionOpen, setAccordionOpen] = useState(false);
-
   return (
     <section id="pricing" className="py-20 bg-slate-50">
       <div className="container mx-auto px-6">
@@ -65,122 +11,54 @@ export default function Pricing() {
             </h2>
             <div className="w-20 h-1 bg-emerald-500 mx-auto mb-6"></div>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-              Flat-rate project pricing for South African small businesses. No
-              hourly billing, no surprises.
+              One flat rate. No hourly billing, no surprises.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8 mb-12">
-            {tiers.map((tier, index) => (
-              <div
-                key={index}
-                className={`rounded-2xl p-8 border-2 ${
-                  tier.popular
-                    ? "border-emerald-500 shadow-lg bg-emerald-50"
-                    : "border-slate-200 bg-white"
-                } transition-shadow duration-300 hover:shadow-lg relative`}
+          <div className="max-w-lg mx-auto mb-12">
+            <div className="rounded-2xl p-8 border-2 border-emerald-500 shadow-lg bg-emerald-50 transition-shadow duration-300 hover:shadow-xl relative">
+              <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-emerald-500 text-white px-4 py-1 rounded-full text-sm font-semibold">
+                One Price
+              </div>
+              <div className="text-center mb-6">
+                <h3 className="text-2xl font-bold text-slate-900 mb-1">
+                  Business Website
+                </h3>
+                <p className="text-sm text-emerald-600 font-semibold mb-3">
+                  4 Pages
+                </p>
+                <div className="text-4xl font-bold text-emerald-600 mb-1">
+                  R3,500
+                </div>
+                <p className="text-slate-600 text-sm mt-3">
+                  A proper business website for contractors, trades, and local
+                  service businesses — built and live fast.
+                </p>
+              </div>
+              <ul className="space-y-3 mb-8">
+                {[
+                  "Home, About, Services & Contact pages",
+                  "Mobile-responsive design",
+                  "On-page SEO optimization",
+                  "Social media integration",
+                  "Contact forms & lead capture",
+                  "Performance optimized",
+                  "Fast static hosting",
+                ].map((feature, i) => (
+                  <li key={i} className="flex items-start gap-3">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 flex-shrink-0 mt-2.5"></span>
+                    <span className="text-slate-700">{feature}</span>
+                  </li>
+                ))}
+              </ul>
+              <a
+                href="#contact"
+                className="block text-center py-3 rounded-lg font-semibold transition-colors bg-emerald-500 text-white hover:bg-emerald-600"
               >
-                {tier.popular && (
-                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-emerald-500 text-white px-4 py-1 rounded-full text-sm font-semibold">
-                    Recommended
-                  </div>
-                )}
-                <div className="text-center mb-6">
-                  <h3 className="text-2xl font-bold text-slate-900 mb-1">
-                    {tier.name}
-                  </h3>
-                  <p className="text-sm text-emerald-600 font-semibold mb-3">
-                    {tier.subtitle}
-                  </p>
-                  <div className="text-3xl font-bold text-emerald-600 mb-1">
-                    {tier.priceZAR}
-                  </div>
-                  <div className="text-sm text-slate-500 mb-3">
-                    {tier.priceUSD}
-                  </div>
-                  <p className="text-slate-600 text-sm">{tier.description}</p>
-                </div>
-                <ul className="space-y-3 mb-8">
-                  {tier.features.map((feature, i) => (
-                    <li key={i} className="flex items-start gap-3">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 flex-shrink-0 mt-2.5"></span>
-                      <span className="text-slate-700">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-                <a
-                  href="#contact"
-                  className={`block text-center py-3 rounded-lg font-semibold transition-colors ${
-                    tier.popular
-                      ? "bg-emerald-500 text-white hover:bg-emerald-600"
-                      : "bg-slate-200 text-slate-900 hover:bg-slate-300"
-                  }`}
-                >
-                  Get a Quote
-                </a>
-              </div>
-            ))}
-          </div>
-
-          <div className="text-center mb-12">
-            <button
-              onClick={() => setAccordionOpen(!accordionOpen)}
-              className="inline-flex items-center gap-2 text-emerald-600 hover:text-emerald-700 font-semibold text-sm transition-colors"
-            >
-              <ChevronDown
-                className={`w-4 h-4 transition-transform ${
-                  accordionOpen ? "rotate-180" : ""
-                }`}
-              />
-              Flexible payment options available
-            </button>
-          </div>
-
-          {accordionOpen && (
-            <div className="bg-white rounded-2xl p-8 md:p-12 border border-slate-200 mb-12">
-              <h3 className="text-2xl md:text-3xl font-bold text-slate-900 mb-6 text-center">
-                How to Work With Me
-              </h3>
-              <div className="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
-                <div className="text-center p-6 bg-slate-50 rounded-xl border border-slate-200">
-                  <h4 className="text-xl font-bold text-slate-900 mb-2">
-                    Foot in the Door
-                  </h4>
-                  <div className="mb-3">
-                    <span className="text-2xl font-bold text-emerald-600">
-                      R2,500
-                    </span>
-                    <span className="text-slate-600 text-sm"> setup + </span>
-                    <span className="text-xl font-bold text-emerald-600">
-                      R450/month
-                    </span>
-                    <div className="text-xs text-slate-500">
-                      (12-month contract)
-                    </div>
-                  </div>
-                  <p className="text-slate-600 leading-relaxed text-sm">
-                    Low upfront cost with predictable monthly payments. Great
-                    for businesses burned by previous devs or hesitant about a
-                    large lump sum.
-                  </p>
-                </div>
-                <div className="text-center p-6 bg-slate-50 rounded-xl border border-slate-200">
-                  <h4 className="text-xl font-bold text-slate-900 mb-2">
-                    Sell Leads, Not Pages
-                  </h4>
-                  <p className="text-sm font-semibold text-emerald-600 mb-3">
-                    Value-based pricing
-                  </p>
-                  <p className="text-slate-600 leading-relaxed text-sm">
-                    If your average job is R2,000 and this site brings 3 new
-                    clients a month, it pays for itself in 30 days. Everything
-                    after is pure profit. Domain registration, SSL, hosting,
-                    copywriting, local SEO, and monthly updates — all handled.
-                  </p>
-                </div>
-              </div>
+                Get a Quote
+              </a>
             </div>
-          )}
+          </div>
 
           <div className="bg-gradient-to-br from-slate-900 to-slate-800 rounded-2xl p-8 md:p-12 text-white">
             <div className="flex items-center gap-3 mb-6">
@@ -194,12 +72,11 @@ export default function Pricing() {
             <div className="grid md:grid-cols-2 gap-8">
               <div>
                 <p className="text-lg text-slate-300 leading-relaxed mb-6">
-                  Add ongoing maintenance to any project tier. Your site stays
+                  Add ongoing maintenance to your website. Your site stays
                   updated, secure, and backed up.
                   <span className="text-emerald-400 font-semibold block mt-2 text-2xl">
                     R350 – R750 / month
                   </span>
-                  <span className="text-sm text-slate-400">($20 – $40)</span>
                 </p>
               </div>
               <div>
@@ -211,7 +88,7 @@ export default function Pricing() {
                         Cloud Hosting & SSL
                       </h4>
                       <p className="text-sm text-slate-400">
-                        Fast hosting with automatic SSL renewal and CDN
+                        Fast hosting with automatic SSL renewal
                       </p>
                     </div>
                   </div>
@@ -222,7 +99,7 @@ export default function Pricing() {
                         1 Hour of Updates
                       </h4>
                       <p className="text-sm text-slate-400">
-                        Text changes, image swaps, minor content updates
+                        Text changes, image swaps, minor updates
                       </p>
                     </div>
                   </div>
