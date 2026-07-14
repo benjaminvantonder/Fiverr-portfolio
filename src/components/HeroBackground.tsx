@@ -1,11 +1,27 @@
 import { Canvas, useFrame } from "@react-three/fiber";
-import { useRef, useMemo } from "react";
+import { useRef, useMemo, useState, useEffect } from "react";
 import * as THREE from "three";
 import { useStore } from "../store/useStore";
+
+function useIsMobile() {
+  const [mobile, setMobile] = useState(
+    typeof window !== "undefined" ? window.innerWidth < 768 : false
+  );
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 767px)");
+    const handler = (e: MediaQueryListEvent | MediaQueryList) => setMobile(e.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
+  return mobile;
+}
 
 function TorusKnot() {
   const ref = useRef<THREE.Mesh>(null!);
   const { nx, ny } = useStore((s) => s.mouse);
+  const mobile = useIsMobile();
+
+  const segments = mobile ? [64, 12] : [180, 24];
 
   useFrame((_, dt) => {
     if (!ref.current) return;
@@ -18,7 +34,7 @@ function TorusKnot() {
 
   return (
     <mesh ref={ref}>
-      <torusKnotGeometry args={[1.2, 0.4, 180, 24]} />
+      <torusKnotGeometry args={[1.2, 0.4, ...segments]} />
       <meshPhysicalMaterial
         color="#10b981"
         emissive="#059669"
@@ -83,18 +99,30 @@ function Particles({ count = 2000 }) {
 }
 
 export default function HeroBackground() {
+  const mobile = useIsMobile();
+
   return (
     <div className="absolute inset-0 pointer-events-none">
       <Canvas
         camera={{ position: [0, 0, 6], fov: 45 }}
         dpr={[1, 1.5]}
-        gl={{ alpha: true, antialias: true, powerPreference: "high-performance" }}
+        gl={{
+          alpha: true,
+          antialias: !mobile,
+          powerPreference: "high-performance",
+          failIfMajorPerformanceCaveat: false,
+        }}
+        onCreated={({ gl }) => {
+          gl.domElement.addEventListener("webglcontextlost", (e) => {
+            e.preventDefault();
+          });
+        }}
       >
         <ambientLight intensity={0.4} />
         <directionalLight position={[5, 5, 5]} intensity={1.2} color="#10b981" />
         <pointLight position={[-5, -3, 2]} intensity={0.6} color="#06b6d4" />
         <TorusKnot />
-        <Particles />
+        <Particles count={mobile ? 800 : 2000} />
       </Canvas>
     </div>
   );

@@ -1,6 +1,4 @@
-import { Canvas, useFrame } from "@react-three/fiber";
-import { useRef, useMemo } from "react";
-import * as THREE from "three";
+import { useRef, useEffect } from "react";
 
 interface StarfieldProps {
   count?: number;
@@ -10,80 +8,83 @@ interface StarfieldProps {
   className?: string;
 }
 
-function Stars({
-  count,
-  color,
-  speed,
-  opacity,
-}: {
-  count: number;
-  color: string;
-  speed: number;
-  opacity: number;
-}) {
-  const ref = useRef<THREE.Points>(null!);
-
-  const [positions] = useMemo(() => {
-    const pos = new Float32Array(count * 3);
-    const sz = new Float32Array(count);
-    for (let i = 0; i < count; i++) {
-      const r = 4 + Math.random() * 12;
-      const theta = Math.random() * Math.PI * 2;
-      const phi = Math.acos(2 * Math.random() - 1);
-      pos[i * 3] = r * Math.sin(phi) * Math.cos(theta);
-      pos[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta);
-      pos[i * 3 + 2] = r * Math.cos(phi);
-      sz[i] = 0.01 + Math.random() * 0.04;
-    }
-    return [pos, sz];
-  }, [count]);
-
-  useFrame((_, dt) => {
-    if (!ref.current) return;
-    ref.current.rotation.y += dt * speed;
-    ref.current.rotation.x += dt * speed * 0.3;
-  });
-
-  return (
-    <points ref={ref}>
-      <bufferGeometry>
-        <bufferAttribute
-          attach="attributes-position"
-          count={count}
-          array={positions}
-          itemSize={3}
-        />
-      </bufferGeometry>
-      <pointsMaterial
-        size={0.05}
-        color={color}
-        transparent
-        opacity={opacity}
-        sizeAttenuation
-        blending={THREE.AdditiveBlending}
-        depthWrite={false}
-      />
-    </points>
-  );
-}
-
 export default function StarfieldBackground({
-  count = 800,
+  count = 600,
   color = "#34d399",
-  speed = 0.03,
-  opacity = 0.5,
+  speed = 0.02,
+  opacity = 0.3,
   className = "",
 }: StarfieldProps) {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    let rafId: number;
+    let w = 0;
+    let h = 0;
+
+    const stars: { x: number; y: number; z: number; r: number }[] = [];
+    for (let i = 0; i < count; i++) {
+      stars.push({
+        x: (Math.random() - 0.5) * 2,
+        y: (Math.random() - 0.5) * 2,
+        z: Math.random(),
+        r: 0.3 + Math.random() * 1.2,
+      });
+    }
+
+    const parsedColor = color;
+
+    function resize() {
+      const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+      w = canvas!.clientWidth;
+      h = canvas!.clientHeight;
+      canvas!.width = w * dpr;
+      canvas!.height = h * dpr;
+      ctx!.scale(dpr, dpr);
+    }
+
+    resize();
+    window.addEventListener("resize", resize);
+
+    let time = 0;
+    function draw() {
+      ctx!.clearRect(0, 0, w, h);
+      time += speed;
+
+      for (const star of stars) {
+        const sx = ((star.x + time * 0.1) % 2 + 2) % 2 - 1;
+        const sy = ((star.y + time * 0.03) % 2 + 2) % 2 - 1;
+        const px = (sx * 0.5 + 0.5) * w;
+        const py = (sy * 0.5 + 0.5) * h;
+        const size = star.r * (0.5 + star.z * 0.5);
+
+        ctx!.globalAlpha = opacity * (0.3 + star.z * 0.7);
+        ctx!.fillStyle = parsedColor;
+        ctx!.beginPath();
+        ctx!.arc(px, py, size, 0, Math.PI * 2);
+        ctx!.fill();
+      }
+
+      rafId = requestAnimationFrame(draw);
+    }
+
+    draw();
+
+    return () => {
+      cancelAnimationFrame(rafId);
+      window.removeEventListener("resize", resize);
+    };
+  }, [count, color, speed, opacity]);
+
   return (
     <div className={`absolute inset-0 pointer-events-none ${className}`}>
-      <Canvas
-        camera={{ position: [0, 0, 6], fov: 45 }}
-        dpr={[1, 1.5]}
-        gl={{ alpha: true, antialias: false, powerPreference: "low-power" }}
-      >
-        <ambientLight intensity={0.1} />
-        <Stars count={count} color={color} speed={speed} opacity={opacity} />
-      </Canvas>
+      <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" />
     </div>
   );
 }
