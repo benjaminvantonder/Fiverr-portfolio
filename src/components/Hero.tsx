@@ -1,10 +1,9 @@
-import { useEffect, useRef, Suspense, lazy } from "react";
+import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ChevronRight, Sparkles } from "lucide-react";
 import { useStore } from "../store/useStore";
-
-const HeroBackground = lazy(() => import("./HeroBackground"));
+import HeroBackground from "./HeroBackground";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -86,9 +85,7 @@ export default function Hero() {
       ref={sectionRef}
       className="relative h-screen min-h-[700px] overflow-hidden bg-slate-950 text-white flex flex-col"
     >
-      <Suspense fallback={<div className="absolute inset-0 bg-slate-950" />}>
-        <HeroBackground />
-      </Suspense>
+      <HeroBackground />
 
       <div className="absolute inset-0 bg-gradient-to-b from-slate-950/60 via-transparent to-slate-950/80 pointer-events-none z-[1]" />
 
