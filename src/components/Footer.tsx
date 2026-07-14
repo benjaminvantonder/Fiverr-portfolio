@@ -1,83 +1,86 @@
+import { motion } from "framer-motion";
 import { Code2, Heart } from 'lucide-react';
+
+const container = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.08 } },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 15 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: [0.25, 0.1, 0.25, 1] } },
+};
 
 export default function Footer() {
   return (
-    <footer className="bg-slate-900 text-white py-12">
+    <footer className="bg-slate-900 dark:bg-slate-950 text-white py-16">
       <div className="container mx-auto px-6">
-        <div className="max-w-6xl mx-auto">
+        <motion.div
+          className="max-w-6xl mx-auto"
+          variants={container}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-40px" }}
+        >
           <div className="grid md:grid-cols-3 gap-8 mb-8">
-            <div>
-              <div className="flex items-center space-x-2 mb-4">
+            <motion.div variants={itemVariants}>
+              <motion.div
+                className="flex items-center space-x-2 mb-4"
+                whileHover={{ x: 3 }}
+              >
                 <Code2 className="w-8 h-8 text-emerald-400" />
                 <span className="text-2xl font-bold">Benjamin van Tonder</span>
-              </div>
+              </motion.div>
               <p className="text-slate-400 leading-relaxed">
                 Building fast, modern websites for local service businesses in South Africa.
               </p>
-            </div>
+            </motion.div>
 
-            <div>
+            <motion.div variants={itemVariants}>
               <h4 className="text-lg font-bold mb-4">Quick Links</h4>
               <ul className="space-y-2">
-                <li>
-                  <a href="#recent-work" className="text-slate-400 hover:text-emerald-400 transition-colors">
-                    Recent Work
-                  </a>
-                </li>
-                <li>
-                  <a href="#about" className="text-slate-400 hover:text-emerald-400 transition-colors">
-                    About
-                  </a>
-                </li>
-                <li>
-                  <a href="#services" className="text-slate-400 hover:text-emerald-400 transition-colors">
-                    Services
-                  </a>
-                </li>
-                <li>
-                  <a href="#portfolio" className="text-slate-400 hover:text-emerald-400 transition-colors">
-                    Portfolio
-                  </a>
-                </li>
-                <li>
-                  <a href="#testimonials" className="text-slate-400 hover:text-emerald-400 transition-colors">
-                    Testimonials
-                  </a>
-                </li>
-                <li>
-                  <a href="#pricing" className="text-slate-400 hover:text-emerald-400 transition-colors">
-                    Pricing
-                  </a>
-                </li>
-                <li>
-                  <a href="#contact" className="text-slate-400 hover:text-emerald-400 transition-colors">
-                    Contact
-                  </a>
-                </li>
+                {["Recent Work", "About", "Services", "Portfolio", "Testimonials", "Pricing", "Contact"].map((link) => {
+                  const href = "#" + link.toLowerCase().replace(/\s+/g, "-");
+                  return (
+                    <li key={link}>
+                      <motion.a
+                        href={href}
+                        className="text-slate-400 hover:text-emerald-400 transition-colors inline-block"
+                        whileHover={{ x: 4, color: "#34d399" }}
+                      >
+                        {link}
+                      </motion.a>
+                    </li>
+                  );
+                })}
               </ul>
-            </div>
+            </motion.div>
 
-            <div>
+            <motion.div variants={itemVariants}>
               <h4 className="text-lg font-bold mb-4">Services</h4>
               <ul className="space-y-2">
-                <li className="text-slate-400">Custom Website Design</li>
-                <li className="text-slate-400">Responsive Development</li>
-                <li className="text-slate-400">Local SEO</li>
-                <li className="text-slate-400">Website Hosting</li>
-                <li className="text-slate-400">Monthly Maintenance</li>
+                {["Custom Website Design", "Responsive Development", "Local SEO", "Website Hosting", "Monthly Maintenance"].map((s) => (
+                  <li key={s} className="text-slate-400">{s}</li>
+                ))}
               </ul>
-            </div>
+            </motion.div>
           </div>
 
-          <div className="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+          <motion.div
+            className="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4"
+            variants={itemVariants}
+          >
             <p className="text-slate-400 text-sm">
               &copy; {new Date().getFullYear()} Benjamin van Tonder. All rights reserved.
             </p>
-            <p className="text-slate-400 text-sm flex items-center gap-2">
+            <motion.p
+              className="text-slate-400 text-sm flex items-center gap-2"
+              whileHover={{ scale: 1.03 }}
+            >
               Built with <Heart className="w-4 h-4 text-red-500" /> using React & TypeScript
-            </p>
-          </div>
-        </div>
+            </motion.p>
+          </motion.div>
+        </motion.div>
       </div>
     </footer>
   );

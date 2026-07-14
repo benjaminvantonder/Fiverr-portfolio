@@ -87,7 +87,7 @@ export default function MockSites() {
                   </p>
                   <div className="flex flex-wrap gap-1.5 mt-4 mb-4">
                     {site.features.map((f, i) => (
-                      <span key={i} className="px-2.5 py-1 bg-slate-100 text-slate-600 text-xs rounded-md font-medium">
+                      <span key={i} className="px-2.5 py-1 bg-surface-card border border-boundary text-foreground-muted text-xs rounded-md font-medium">
                         {f}
                       </span>
                     ))}

@@ -1,6 +1,11 @@
 import { useEffect, useRef } from "react";
 import { HashRouter, Routes, Route } from "react-router-dom";
+import { motion } from "framer-motion";
 import Lenis from "lenis";
+import { useStore } from "./store/useStore";
+import CustomCursor from "./components/CustomCursor";
+import EnhancedMouseGlow from "./components/EnhancedMouseGlow";
+import ThemeToggle from "./components/ThemeToggle";
 import Hero from "./components/Hero";
 import RecentWork from "./components/RecentWork";
 import About from "./components/About";
@@ -12,12 +17,23 @@ import Pricing from "./components/Pricing";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 
+
 if (typeof history !== "undefined" && "scrollRestoration" in history) {
   history.scrollRestoration = "manual";
 }
 
+const pageVariants = {
+  initial: { opacity: 0 },
+  animate: { opacity: 1, transition: { duration: 0.6 } },
+};
+
 function Home() {
   const lenisRef = useRef<Lenis | null>(null);
+  const theme = useStore((s) => s.theme);
+
+  useEffect(() => {
+    document.documentElement.classList.toggle("dark", theme === "dark");
+  }, [theme]);
 
   useEffect(() => {
     const lenis = new Lenis({
@@ -54,7 +70,15 @@ function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-white">
+    <motion.div
+      className="min-h-screen bg-surface text-foreground overflow-x-hidden"
+      variants={pageVariants}
+      initial="initial"
+      animate="animate"
+    >
+      <CustomCursor />
+      <EnhancedMouseGlow />
+      <ThemeToggle />
       <Hero />
       <RecentWork />
       <About />
@@ -65,7 +89,7 @@ function Home() {
       <Pricing />
       <Contact />
       <Footer />
-    </div>
+    </motion.div>
   );
 }
 

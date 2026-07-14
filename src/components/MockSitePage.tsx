@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { ArrowLeft, Phone, Mail, MapPin, Clock, Star, Dumbbell, Coffee, Wrench, Quote, Users, Award, ChefHat, Heart, Shield, Zap, User } from "lucide-react";
+import { ArrowLeft, Phone, Mail, MapPin, Clock, Star, Dumbbell, Coffee, Wrench, Quote, ChefHat, Heart, Shield, Zap, User } from "lucide-react";
 
 const siteData: Record<string, {
   title: string;

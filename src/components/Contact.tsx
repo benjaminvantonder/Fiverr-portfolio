@@ -1,5 +1,17 @@
 import { useState } from "react";
+import { motion } from "framer-motion";
 import { Mail, MapPin, Clock, Send, Github } from "lucide-react";
+import StarfieldBackground from "./StarfieldBackground";
+
+const reveal = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] } },
+};
+
+const contactItemVariants = {
+  hidden: { opacity: 0, x: -15 },
+  visible: (i: number) => ({ opacity: 1, x: 0, transition: { duration: 0.4, delay: 0.1 * i, ease: [0.25, 0.1, 0.25, 1] } }),
+};
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -18,6 +30,8 @@ export default function Contact() {
     const { id, value } = e.target;
     setFormData((prev) => ({ ...prev, [id]: value }));
   };
+
+  const [focusedField, setFocusedField] = useState<string | null>(null);
 
   const SendMessage = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -43,184 +57,238 @@ Message: ${message}`
   };
 
   return (
-    <section id="contact" className="py-20 bg-slate-50">
-      <div className="container mx-auto px-6">
+    <section id="contact" className="relative py-28 bg-surface">
+      <StarfieldBackground count={600} color="#34d399" speed={0.02} opacity={0.3} />
+      <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
-              Let's Talk
-            </h2>
-            <div className="w-20 h-1 bg-emerald-500 mx-auto mb-6"></div>
-            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-              Have a project in mind? Want a quote? Send me a message and I'll get back to you within 24 hours.
-            </p>
-          </div>
+          <motion.div
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+          >
+            <span className="text-xs tracking-[0.2em] uppercase text-foreground-muted mb-4 block font-medium">
+              Contact
+            </span>
+            <motion.h2
+              className="text-4xl md:text-6xl font-bold text-foreground leading-tight"
+              initial={{ opacity: 0, y: 20, filter: "blur(4px)" }}
+              whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: 0.1 }}
+            >
+              Let&rsquo;s Talk
+            </motion.h2>
+            <motion.p
+              className="text-lg text-foreground-muted max-w-2xl mx-auto mt-4"
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+            >
+              Have a project in mind? Send me a message and I'll get back to you within 24 hours.
+            </motion.p>
+          </motion.div>
 
           <div className="grid md:grid-cols-2 gap-12">
-            <div>
-              <h3 className="text-2xl font-bold text-slate-900 mb-6">
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-60px" }}
+              variants={reveal}
+            >
+              <h3 className="text-2xl font-bold text-foreground mb-6">
                 Get In Touch
               </h3>
-              <p className="text-lg text-slate-700 leading-relaxed mb-8">
+              <p className="text-lg text-foreground-muted leading-relaxed mb-8">
                 Whether you're a local tradesperson needing your first website or an established business looking for an upgrade, I'd love to hear from you.
               </p>
 
               <div className="space-y-6">
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-emerald-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Mail className="w-6 h-6 text-emerald-600" />
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-slate-900 mb-1">Email</h4>
-                    <a
-                      href="mailto:vantonderbenna@gmail.com"
-                      className="text-emerald-600 hover:text-emerald-700"
+                {[
+                  { icon: Mail, title: "Email", content: <a href="mailto:vantonderbenna@gmail.com" className="text-accent hover:text-emerald-700">vantonderbenna@gmail.com</a> },
+                  { icon: MapPin, title: "Location", content: <p className="text-foreground-muted">South Africa — based locally, working with South African small businesses.</p> },
+                  { icon: Clock, title: "Response Time", content: <p className="text-foreground-muted">Typically within 24 hours</p> },
+                ].map((item, i) => {
+                  const Icon = item.icon;
+                  return (
+                    <motion.div
+                      key={i}
+                      className="flex items-start gap-4"
+                      variants={contactItemVariants}
+                      custom={i}
+                      initial="hidden"
+                      whileInView="visible"
+                      viewport={{ once: true }}
                     >
-                      vantonderbenna@gmail.com
-                    </a>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-emerald-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <MapPin className="w-6 h-6 text-emerald-600" />
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-slate-900 mb-1">Location</h4>
-                    <p className="text-slate-600">South Africa — based locally, working with South African small businesses.</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-emerald-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Clock className="w-6 h-6 text-emerald-600" />
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-slate-900 mb-1">Response Time</h4>
-                    <p className="text-slate-600">Typically within 24 hours</p>
-                  </div>
-                </div>
+                      <div className="w-12 h-12 bg-emerald-100 dark:bg-emerald-900/30 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <Icon className="w-6 h-6 text-accent" />
+                      </div>
+                      <div>
+                        <h4 className="font-bold text-foreground mb-1">{item.title}</h4>
+                        {item.content}
+                      </div>
+                    </motion.div>
+                  );
+                })}
               </div>
 
-              <div className="mt-8 bg-emerald-50 rounded-xl p-6 border border-emerald-200">
-                <h4 className="font-bold text-slate-900 mb-3">Check My Work</h4>
-                <p className="text-slate-700 mb-4">
+              <motion.div
+                className="mt-8 bg-emerald-50 dark:bg-emerald-950/20 rounded-xl p-6 border border-emerald-200 dark:border-emerald-900/30"
+                initial={{ opacity: 0, scale: 0.97 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+                whileHover={{ y: -2 }}
+              >
+                <h4 className="font-bold text-foreground mb-3">Check My Work</h4>
+                <p className="text-foreground-muted mb-4">
                   All my projects are open-source on GitHub. Browse the code, see what I'm building, and get a sense of my style.
                 </p>
-                <a
+                <motion.a
                   href="https://github.com/benjaminvantonder"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-emerald-600 hover:text-emerald-700 font-semibold inline-flex items-center gap-2"
+                  className="text-accent hover:text-emerald-700 font-semibold inline-flex items-center gap-2"
+                  whileHover={{ x: 4 }}
                 >
                   <Github className="w-5 h-5" />
                   github.com/benjaminvantonder
-                </a>
-              </div>
-            </div>
+                </motion.a>
+              </motion.div>
+            </motion.div>
 
-            <div className="bg-white rounded-2xl p-8 border border-slate-200 shadow-lg">
-              <h3 className="text-2xl font-bold text-slate-900 mb-6">
+            <motion.div
+              className="bg-surface rounded-2xl p-8 border border-boundary shadow-lg"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.6, delay: 0.15 }}
+            >
+              <h3 className="text-2xl font-bold text-foreground mb-6">
                 Send Me a Message
               </h3>
               <form className="space-y-6">
                 <div>
                   <label
                     htmlFor="name"
-                    className="block text-sm font-semibold text-slate-700 mb-2"
+                    className="block text-sm font-semibold text-foreground-muted mb-2"
                   >
                     Your Name
                   </label>
-                  <input
-                    type="text"
-                    id="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition-all"
-                    placeholder="John Smith"
-                  />
+                  <motion.div animate={focusedField === "name" ? { scale: 1.01 } : { scale: 1 }}>
+                    <input
+                      type="text"
+                      id="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      onFocus={() => setFocusedField("name")}
+                      onBlur={() => setFocusedField(null)}
+                      className="w-full px-4 py-3 bg-surface-card border border-boundary rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition-all"
+                      placeholder="John Smith"
+                    />
+                  </motion.div>
                 </div>
 
                 <div>
                   <label
                     htmlFor="email"
-                    className="block text-sm font-semibold text-slate-700 mb-2"
+                    className="block text-sm font-semibold text-foreground-muted mb-2"
                   >
                     Email Address
                   </label>
-                  <input
-                    type="email"
-                    id="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition-all"
-                    placeholder="john@example.com"
-                  />
+                  <motion.div animate={focusedField === "email" ? { scale: 1.01 } : { scale: 1 }}>
+                    <input
+                      type="email"
+                      id="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      onFocus={() => setFocusedField("email")}
+                      onBlur={() => setFocusedField(null)}
+                      className="w-full px-4 py-3 bg-surface-card border border-boundary rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition-all"
+                      placeholder="john@example.com"
+                    />
+                  </motion.div>
                 </div>
 
                 <div>
                   <label
                     htmlFor="business"
-                    className="block text-sm font-semibold text-slate-700 mb-2"
+                    className="block text-sm font-semibold text-foreground-muted mb-2"
                   >
                     Business/Company (Optional)
                   </label>
-                  <input
-                    type="text"
-                    id="business"
-                    value={formData.business}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition-all"
-                    placeholder="Your Company Name"
-                  />
+                  <motion.div animate={focusedField === "business" ? { scale: 1.01 } : { scale: 1 }}>
+                    <input
+                      type="text"
+                      id="business"
+                      value={formData.business}
+                      onChange={handleChange}
+                      onFocus={() => setFocusedField("business")}
+                      onBlur={() => setFocusedField(null)}
+                      className="w-full px-4 py-3 bg-surface-card border border-boundary rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition-all"
+                      placeholder="Your Company Name"
+                    />
+                  </motion.div>
                 </div>
 
                 <div>
                   <label
                     htmlFor="package"
-                    className="block text-sm font-semibold text-slate-700 mb-2"
+                    className="block text-sm font-semibold text-foreground-muted mb-2"
                   >
                     Interested In
                   </label>
-                  <select
-                    id="package"
-                    value={formData.package}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition-all"
-                  >
-                    <option>Business Website (R3,500)</option>
-                    <option>Monthly Care Plan</option>
-                    <option>Just Have Questions</option>
-                  </select>
+                  <motion.div animate={focusedField === "package" ? { scale: 1.01 } : { scale: 1 }}>
+                    <select
+                      id="package"
+                      value={formData.package}
+                      onChange={handleChange}
+                      onFocus={() => setFocusedField("package")}
+                      onBlur={() => setFocusedField(null)}
+                      className="w-full px-4 py-3 bg-surface-card border border-boundary rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition-all"
+                    >
+                      <option>Business Website (R3,500)</option>
+                      <option>Monthly Care Plan</option>
+                      <option>Just Have Questions</option>
+                    </select>
+                  </motion.div>
                 </div>
 
                 <div>
                   <label
                     htmlFor="message"
-                    className="block text-sm font-semibold text-slate-700 mb-2"
+                    className="block text-sm font-semibold text-foreground-muted mb-2"
                   >
                     Tell Me About Your Project
                   </label>
-                  <textarea
-                    id="message"
-                    rows={5}
-                    value={formData.message}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition-all resize-none"
-                    placeholder="What kind of site do you need? What are your goals? Any specific features or pages in mind?"
-                  ></textarea>
+                  <motion.div animate={focusedField === "message" ? { scale: 1.01 } : { scale: 1 }}>
+                    <textarea
+                      id="message"
+                      rows={5}
+                      value={formData.message}
+                      onChange={handleChange}
+                      onFocus={() => setFocusedField("message")}
+                      onBlur={() => setFocusedField(null)}
+                      className="w-full px-4 py-3 bg-surface-card border border-boundary rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition-all resize-none"
+                      placeholder="What kind of site do you need? What are your goals? Any specific features or pages in mind?"
+                    ></textarea>
+                  </motion.div>
                 </div>
 
-                <button
+                <motion.button
                   type="submit"
                   onClick={SendMessage}
                   className="w-full bg-emerald-500 hover:bg-emerald-600 text-white font-semibold py-4 rounded-lg transition-colors flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/20"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
                 >
                   Send via WhatsApp
                   <Send className="w-5 h-5" />
-                </button>
+                </motion.button>
               </form>
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>
