@@ -77,7 +77,7 @@ export default function Footer() {
               className="text-slate-400 text-sm flex items-center gap-2"
               whileHover={{ scale: 1.03 }}
             >
-              Built with <Heart className="w-4 h-4 text-red-500" /> using React & TypeScript
+              Built with years of experience and care for South Africa <Heart className="w-4 h-4 text-red-500" />
             </motion.p>
           </motion.div>
         </motion.div>
