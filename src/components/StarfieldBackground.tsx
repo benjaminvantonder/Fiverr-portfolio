@@ -21,6 +21,9 @@ export default function StarfieldBackground({
     const canvas = canvasRef.current;
     if (!canvas) return;
 
+    const isMobile = window.innerWidth < 768;
+    const finalCount = isMobile ? Math.floor(count * 0.2) : count;
+
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
@@ -29,7 +32,7 @@ export default function StarfieldBackground({
     let h = 0;
 
     const stars: { x: number; y: number; z: number; r: number }[] = [];
-    for (let i = 0; i < count; i++) {
+    for (let i = 0; i < finalCount; i++) {
       stars.push({
         x: (Math.random() - 0.5) * 2,
         y: (Math.random() - 0.5) * 2,
@@ -37,8 +40,6 @@ export default function StarfieldBackground({
         r: 0.3 + Math.random() * 1.2,
       });
     }
-
-    const parsedColor = color;
 
     function resize() {
       const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
@@ -51,6 +52,19 @@ export default function StarfieldBackground({
 
     resize();
     window.addEventListener("resize", resize);
+
+    if (isMobile) {
+      ctx.fillStyle = color;
+      for (const star of stars) {
+        const px = (star.x * 0.5 + 0.5) * w;
+        const py = (star.y * 0.5 + 0.5) * h;
+        ctx.globalAlpha = opacity * (0.3 + star.z * 0.7);
+        ctx.beginPath();
+        ctx.arc(px, py, star.r * 0.8, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      return () => window.removeEventListener("resize", resize);
+    }
 
     let time = 0;
     function draw() {
@@ -65,7 +79,7 @@ export default function StarfieldBackground({
         const size = star.r * (0.5 + star.z * 0.5);
 
         ctx!.globalAlpha = opacity * (0.3 + star.z * 0.7);
-        ctx!.fillStyle = parsedColor;
+        ctx!.fillStyle = color;
         ctx!.beginPath();
         ctx!.arc(px, py, size, 0, Math.PI * 2);
         ctx!.fill();

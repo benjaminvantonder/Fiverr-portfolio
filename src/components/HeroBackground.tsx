@@ -13,8 +13,11 @@ function HeroStarfield({ canvasRef }: { canvasRef: React.RefObject<HTMLCanvasEle
     let w = 0;
     let h = 0;
 
+    const isMobile = window.innerWidth < 768;
+    const starCount = isMobile ? 60 : 300;
+
     const stars: { x: number; y: number; z: number; r: number; twinkleSpeed: number; twinkleOffset: number }[] = [];
-    for (let i = 0; i < 300; i++) {
+    for (let i = 0; i < starCount; i++) {
       stars.push({
         x: Math.random(),
         y: Math.random(),
@@ -36,6 +39,19 @@ function HeroStarfield({ canvasRef }: { canvasRef: React.RefObject<HTMLCanvasEle
 
     resize();
     window.addEventListener("resize", resize);
+
+    if (isMobile) {
+      ctx.fillStyle = "#34d399";
+      for (const star of stars) {
+        const px = star.x * w;
+        const py = star.y * h;
+        ctx.globalAlpha = 0.15 + star.z * 0.5;
+        ctx.beginPath();
+        ctx.arc(px, py, star.r * 0.7, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      return () => window.removeEventListener("resize", resize);
+    }
 
     let time = 0;
     function draw() {
@@ -79,7 +95,11 @@ function GradientBlobs() {
   const nx = useStore((s) => s.mouse.nx);
   const ny = useStore((s) => s.mouse.ny);
 
+  const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+  const blurFactor = isMobile ? 0.4 : 1;
+
   const animate = useCallback(() => {
+    if (isMobile) return;
     const factor = 40;
     gsap.to(blob1Ref.current, {
       x: nx * factor,
@@ -109,7 +129,7 @@ function GradientBlobs() {
       ease: "power2.out",
       overwrite: "auto",
     });
-  }, [nx, ny]);
+  }, [nx, ny, isMobile]);
 
   useEffect(() => {
     animate();
@@ -151,7 +171,7 @@ function GradientBlobs() {
           top: "10%",
           left: "15%",
           background: "radial-gradient(circle, rgba(16,185,129,0.25) 0%, rgba(16,185,129,0.05) 60%, transparent 70%)",
-          filter: "blur(60px)",
+          filter: `blur(${Math.round(60 * blurFactor)}px)`,
         }}
       />
       <div
@@ -161,7 +181,7 @@ function GradientBlobs() {
           top: "30%",
           right: "10%",
           background: "radial-gradient(circle, rgba(6,182,212,0.2) 0%, rgba(6,182,212,0.04) 60%, transparent 70%)",
-          filter: "blur(50px)",
+          filter: `blur(${Math.round(50 * blurFactor)}px)`,
         }}
       />
       <div
@@ -171,7 +191,7 @@ function GradientBlobs() {
           bottom: "15%",
           left: "40%",
           background: "radial-gradient(circle, rgba(52,211,153,0.18) 0%, rgba(52,211,153,0.03) 60%, transparent 70%)",
-          filter: "blur(55px)",
+          filter: `blur(${Math.round(55 * blurFactor)}px)`,
         }}
       />
       <div
@@ -181,7 +201,7 @@ function GradientBlobs() {
           top: "50%",
           left: "5%",
           background: "radial-gradient(circle, rgba(139,92,246,0.12) 0%, rgba(139,92,246,0.02) 60%, transparent 70%)",
-          filter: "blur(45px)",
+          filter: `blur(${Math.round(45 * blurFactor)}px)`,
         }}
       />
     </div>
