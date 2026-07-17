@@ -134,7 +134,7 @@ export default function Pricing() {
 
                 <motion.a
                   href="#contact"
-                  className="block text-center py-3.5 rounded-xl font-semibold bg-accent text-white btn-shimmer shadow-lg shadow-accent/20"
+                  className="block text-center py-3.5 rounded-xl font-semibold bg-accent text-slate-900 dark:text-white btn-shimmer shadow-lg shadow-accent/20"
                   whileHover={{ scale: 1.02, boxShadow: "0 20px 40px -10px rgba(5,150,105,0.4)" }}
                   whileTap={{ scale: 0.98 }}
                 >
