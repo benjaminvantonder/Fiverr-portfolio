@@ -22,7 +22,7 @@ export default function StarfieldBackground({
     if (!canvas) return;
 
     const isMobile = window.innerWidth < 768;
-    const finalCount = isMobile ? Math.floor(count * 0.2) : count;
+    const finalCount = isMobile ? Math.floor(count * 0.12) : count;
 
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
@@ -30,6 +30,7 @@ export default function StarfieldBackground({
     let rafId: number;
     let w = 0;
     let h = 0;
+    let visible = false;
 
     const stars: { x: number; y: number; z: number; r: number }[] = [];
     for (let i = 0; i < finalCount; i++) {
@@ -42,7 +43,7 @@ export default function StarfieldBackground({
     }
 
     function resize() {
-      const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+      const dpr = Math.min(window.devicePixelRatio || 1, isMobile ? 1 : 1.5);
       w = canvas!.clientWidth;
       h = canvas!.clientHeight;
       canvas!.width = w * dpr;
@@ -52,6 +53,12 @@ export default function StarfieldBackground({
 
     resize();
     window.addEventListener("resize", resize);
+
+    const observer = new IntersectionObserver(
+      ([entry]) => { visible = entry.isIntersecting; },
+      { threshold: 0 }
+    );
+    observer.observe(canvas);
 
     if (isMobile) {
       ctx.fillStyle = color;
@@ -63,11 +70,18 @@ export default function StarfieldBackground({
         ctx.arc(px, py, star.r * 0.8, 0, Math.PI * 2);
         ctx.fill();
       }
-      return () => window.removeEventListener("resize", resize);
+      return () => {
+        observer.disconnect();
+        window.removeEventListener("resize", resize);
+      };
     }
 
     let time = 0;
     function draw() {
+      if (!visible) {
+        rafId = requestAnimationFrame(draw);
+        return;
+      }
       ctx!.clearRect(0, 0, w, h);
       time += speed;
 
@@ -92,6 +106,7 @@ export default function StarfieldBackground({
 
     return () => {
       cancelAnimationFrame(rafId);
+      observer.disconnect();
       window.removeEventListener("resize", resize);
     };
   }, [count, color, speed, opacity]);

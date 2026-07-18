@@ -14,7 +14,7 @@ function HeroStarfield({ canvasRef }: { canvasRef: React.RefObject<HTMLCanvasEle
     let h = 0;
 
     const isMobile = window.innerWidth < 768;
-    const starCount = isMobile ? 60 : 300;
+    const starCount = isMobile ? 30 : 300;
 
     const stars: { x: number; y: number; z: number; r: number; twinkleSpeed: number; twinkleOffset: number }[] = [];
     for (let i = 0; i < starCount; i++) {
@@ -136,6 +136,7 @@ function GradientBlobs() {
   }, [animate]);
 
   useEffect(() => {
+    if (isMobile) return;
     const blobs = [blob1Ref.current, blob2Ref.current, blob3Ref.current, blob4Ref.current];
     const drifts = [
       { x: 30, y: -20, dur: 8 },

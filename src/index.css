@@ -267,4 +267,7 @@ html.lenis { height: auto; }
   .card-hover:hover {
     transform: none;
   }
+  section {
+    contain: layout style;
+  }
 }
