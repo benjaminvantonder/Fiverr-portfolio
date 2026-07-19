@@ -16,6 +16,7 @@ import Testimonials from "./components/Testimonials";
 import Pricing from "./components/Pricing";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
+import BackToTop from "./components/BackToTop";
 
 
 if (typeof history !== "undefined" && "scrollRestoration" in history) {
@@ -36,6 +37,25 @@ function Home() {
   }, [theme]);
 
   useEffect(() => {
+    const handleAnchor = (e: MouseEvent) => {
+      const anchor = (e.target as HTMLElement).closest('a[href^="#"]');
+      if (anchor) {
+        e.preventDefault();
+        const href = anchor.getAttribute("href");
+        if (href && href.length > 1) {
+          const el = document.querySelector(href);
+          if (el) {
+            if (lenisRef.current) {
+              lenisRef.current.scrollTo(el, { offset: -80 });
+            } else {
+              el.scrollIntoView({ behavior: "smooth", block: "start" });
+            }
+          }
+        }
+      }
+    };
+    document.addEventListener("click", handleAnchor);
+
     if (window.innerWidth < 768) return;
 
     const lenis = new Lenis({
@@ -51,19 +71,6 @@ function Home() {
       requestAnimationFrame(raf);
     }
     requestAnimationFrame(raf);
-
-    const handleAnchor = (e: MouseEvent) => {
-      const anchor = (e.target as HTMLElement).closest('a[href^="#"]');
-      if (anchor) {
-        e.preventDefault();
-        const href = anchor.getAttribute("href");
-        if (href && href.length > 1) {
-          const el = document.querySelector(href);
-          if (el) lenis.scrollTo(el, { offset: -80 });
-        }
-      }
-    };
-    document.addEventListener("click", handleAnchor);
 
     return () => {
       lenis.destroy();
@@ -91,6 +98,7 @@ function Home() {
       <Pricing />
       <Contact />
       <Footer />
+      <BackToTop />
     </motion.div>
   );
 }
