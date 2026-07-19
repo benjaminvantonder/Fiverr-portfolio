@@ -94,6 +94,9 @@ export default function Pricing() {
                 <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-accent via-cyan-500 to-accent" />
 
                 <div className="flex items-center gap-2 mb-8">
+                  <span className="inline-flex items-center gap-1.5 bg-red-500/10 text-red-400 text-xs font-semibold px-3 py-1 rounded-full animate-pulse">
+                    🔥 10% Off — Ends 26 July
+                  </span>
                   <span className="inline-flex items-center gap-1.5 bg-accent/10 text-accent text-xs font-semibold px-3 py-1 rounded-full">
                     <Sparkles className="w-3 h-3" /> Featured
                   </span>
@@ -109,8 +112,13 @@ export default function Pricing() {
                     </p>
                   </div>
                   <div className="text-left md:text-right">
-                    <div className="text-5xl md:text-6xl font-bold text-accent tracking-tight">
-                      <PriceCounter end={3500} />
+                    <div className="flex items-baseline gap-3">
+                      <span className="text-2xl text-foreground-muted line-through">
+                        <PriceCounter end={3500} />
+                      </span>
+                      <div className="text-5xl md:text-6xl font-bold text-accent tracking-tight">
+                        <PriceCounter end={3150} />
+                      </div>
                     </div>
                     <p className="text-foreground-muted text-xs mt-1">One-time project price</p>
                   </div>
