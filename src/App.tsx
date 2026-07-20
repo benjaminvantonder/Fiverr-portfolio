@@ -3,8 +3,6 @@ import { HashRouter, Routes, Route } from "react-router-dom";
 import { motion } from "framer-motion";
 import Lenis from "lenis";
 import { useStore } from "./store/useStore";
-import CustomCursor from "./components/CustomCursor";
-import EnhancedMouseGlow from "./components/EnhancedMouseGlow";
 import ThemeToggle from "./components/ThemeToggle";
 import Hero from "./components/Hero";
 import RecentWork from "./components/RecentWork";
@@ -85,8 +83,6 @@ function Home() {
       initial="initial"
       animate="animate"
     >
-      <CustomCursor />
-      <EnhancedMouseGlow />
       <ThemeToggle />
       <Hero />
       <RecentWork />

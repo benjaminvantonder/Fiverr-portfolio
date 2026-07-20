@@ -2,7 +2,6 @@ import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ChevronRight, Sparkles } from "lucide-react";
-import { useStore } from "../store/useStore";
 import HeroBackground from "./HeroBackground";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -11,7 +10,6 @@ export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null!);
   const textRef = useRef<HTMLDivElement>(null!);
   const navRef = useRef<HTMLDivElement>(null!);
-  const setCursorVariant = useStore((s) => s.setCursorVariant);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -97,8 +95,6 @@ export default function Hero() {
           <a
             href="#contact"
             className="px-5 py-2 rounded-full text-sm font-medium border border-white/20 text-white/80 hover:text-white hover:border-emerald-400/50 transition-all duration-300"
-            onMouseEnter={() => setCursorVariant("hover")}
-            onMouseLeave={() => setCursorVariant("default")}
           >
             Get in Touch
           </a>
@@ -143,8 +139,6 @@ export default function Hero() {
             <a
               href="#pricing"
               className="group relative px-8 py-3.5 rounded-full bg-emerald-500 font-semibold text-base inline-flex items-center gap-2 btn-shimmer shadow-lg shadow-emerald-500/20"
-              onMouseEnter={() => setCursorVariant("hover")}
-              onMouseLeave={() => setCursorVariant("default")}
             >
               <span className="relative z-10">See Pricing</span>
               <ChevronRight className="relative z-10 w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -152,8 +146,6 @@ export default function Hero() {
             <a
               href="#portfolio"
               className="px-8 py-3.5 rounded-full glass-strong text-white/80 hover:text-white transition-all duration-300 font-semibold text-base"
-              onMouseEnter={() => setCursorVariant("hover")}
-              onMouseLeave={() => setCursorVariant("default")}
             >
               View My Work
             </a>

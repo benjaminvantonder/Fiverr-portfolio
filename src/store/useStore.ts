@@ -8,8 +8,6 @@ interface Store {
   toggleTheme: () => void;
   mouse: { x: number; y: number; nx: number; ny: number };
   setMouse: (x: number, y: number) => void;
-  cursorVariant: "default" | "hover" | "click";
-  setCursorVariant: (v: "default" | "hover" | "click") => void;
 }
 
 function getInitialTheme(): Theme {
@@ -39,6 +37,4 @@ export const useStore = create<Store>((set) => ({
     const h = window.innerHeight;
     set({ mouse: { x, y, nx: (x / w) * 2 - 1, ny: -(y / h) * 2 + 1 } });
   },
-  cursorVariant: "default",
-  setCursorVariant: (v) => set({ cursorVariant: v }),
 }));
