@@ -37,9 +37,8 @@ body {
   font-family: "Inter", system-ui, sans-serif;
 }
 
-*::-webkit-scrollbar { width: 6px; }
-*::-webkit-scrollbar-track { background: transparent; }
-*::-webkit-scrollbar-thumb { background: var(--text-muted); border-radius: 3px; }
+*::-webkit-scrollbar { display: none; }
+* { scrollbar-width: none; }
 
 html.lenis { height: auto; }
 .lenis.lenis-smooth { scroll-behavior: auto; }
