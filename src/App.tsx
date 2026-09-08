@@ -38,7 +38,7 @@ function Layout() {
   const isMockSite = pathname.startsWith("/mock");
 
   return (
-    <div className="min-h-screen bg-surface text-foreground overflow-x-hidden">
+    <div className="min-h-screen bg-surface text-foreground">
       <ThemeSync />
       <ScrollToTop />
       {!isMockSite && <Navbar />}

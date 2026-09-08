@@ -4,7 +4,7 @@ import MockSites from "../components/MockSites";
 
 export default function PortfolioPage() {
   return (
-    <div className="min-h-screen bg-surface text-foreground overflow-x-hidden">
+    <div className="min-h-screen bg-surface text-foreground">
       <Portfolio />
       <Testimonials />
       <MockSites />

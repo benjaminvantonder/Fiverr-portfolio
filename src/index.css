@@ -30,6 +30,11 @@
   --nav-bg: rgba(11, 17, 33, 0.85);
 }
 
+html,
+body {
+  overflow-x: hidden;
+}
+
 body {
   background: var(--bg);
   color: var(--text);

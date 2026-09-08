@@ -3,7 +3,7 @@ import Process from "../components/Process";
 
 export default function ServicesPage() {
   return (
-    <div className="min-h-screen bg-surface text-foreground overflow-x-hidden">
+    <div className="min-h-screen bg-surface text-foreground">
       <Services />
       <Process />
     </div>

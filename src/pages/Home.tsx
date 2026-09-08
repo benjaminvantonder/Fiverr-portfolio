@@ -31,7 +31,7 @@ const explore = [
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-surface text-foreground overflow-x-hidden">
+    <div className="min-h-screen bg-surface text-foreground">
       <Hero />
       <RecentWork />
 
