@@ -9,7 +9,7 @@ const container = {
 
 const stepVariants = {
   hidden: { opacity: 0, x: -20 },
-  visible: { opacity: 1, x: 0, transition: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] } },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] as const } },
 };
 
 const steps = [
@@ -56,7 +56,7 @@ export default function Process() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+            transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] as const }}
           >
             <span className="text-xs tracking-[0.2em] uppercase text-foreground-muted mb-4 block font-medium">
               Process
@@ -113,7 +113,7 @@ export default function Process() {
               initial={{ height: 0 }}
               whileInView={{ height: "calc(100% - 64px)" }}
               viewport={{ once: true }}
-              transition={{ duration: 1.2, ease: [0.25, 0.1, 0.25, 1], delay: 0.2 }}
+              transition={{ duration: 1.2, ease: [0.25, 0.1, 0.25, 1] as const, delay: 0.2 }}
             />
             {steps.map((step, index) => {
               const Icon = step.icon;

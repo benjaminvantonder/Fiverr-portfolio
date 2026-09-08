@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ChevronRight, Sparkles } from "lucide-react";
@@ -9,17 +10,10 @@ gsap.registerPlugin(ScrollTrigger);
 export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null!);
   const textRef = useRef<HTMLDivElement>(null!);
-  const navRef = useRef<HTMLDivElement>(null!);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
-
-      tl.fromTo(
-        navRef.current,
-        { y: -30, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.6, delay: 0.2 },
-      );
 
       const badge = textRef.current.querySelector(".hero-badge");
       const title = textRef.current.querySelector(".hero-title");
@@ -87,20 +81,6 @@ export default function Hero() {
 
       <div className="absolute inset-0 bg-gradient-to-b from-slate-950/60 via-transparent to-slate-950/80 pointer-events-none z-[1]" />
 
-      <div ref={navRef} className="relative z-10 container mx-auto px-6 py-6 opacity-0">
-        <div className="flex items-center justify-between">
-          <span className="text-xl font-bold tracking-tight">
-            Benjamin <span className="text-emerald-400">van Tonder</span>
-          </span>
-          <a
-            href="#contact"
-            className="px-5 py-2 rounded-full text-sm font-medium border border-white/20 text-white/80 hover:text-white hover:border-emerald-400/50 transition-all duration-300"
-          >
-            Get in Touch
-          </a>
-        </div>
-      </div>
-
       <div
         ref={textRef}
         className="hero-parallax relative z-10 flex-1 flex items-center container mx-auto px-6"
@@ -136,19 +116,19 @@ export default function Hero() {
           </p>
 
           <div className="hero-buttons flex flex-col sm:flex-row gap-4 justify-center items-center opacity-0">
-            <a
-              href="#pricing"
+            <Link
+              to="/pricing"
               className="group relative px-8 py-3.5 rounded-full bg-emerald-500 font-semibold text-base inline-flex items-center gap-2 btn-shimmer shadow-lg shadow-emerald-500/20"
             >
               <span className="relative z-10">See Pricing</span>
               <ChevronRight className="relative z-10 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </a>
-            <a
-              href="#portfolio"
+            </Link>
+            <Link
+              to="/portfolio"
               className="px-8 py-3.5 rounded-full glass-strong text-white/80 hover:text-white transition-all duration-300 font-semibold text-base"
             >
               View My Work
-            </a>
+            </Link>
           </div>
         </div>
       </div>

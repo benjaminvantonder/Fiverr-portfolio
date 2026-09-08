@@ -27,7 +27,7 @@ function TimelineNode({
       initial={{ opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1], delay: index * 0.15 }}
+      transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] as const, delay: index * 0.15 }}
     >
       <div className="flex flex-col items-center">
         <motion.div
@@ -243,7 +243,7 @@ export default function About() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+            transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] as const }}
           >
             <span className="text-xs tracking-[0.2em] uppercase text-foreground-muted mb-4 block font-medium">
               About

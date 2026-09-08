@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import { Link } from "react-router-dom";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Shield, Clock, Wrench, Sparkles, Check } from "lucide-react";
 import { useCountUp } from "../hooks/useCountUp";
@@ -52,7 +53,7 @@ export default function Pricing() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+            transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] as const }}
           >
             <span className="text-xs tracking-[0.2em] uppercase text-foreground-muted mb-4 block font-medium">
               Pricing
@@ -95,7 +96,7 @@ export default function Pricing() {
 
                 <div className="flex items-center gap-2 mb-8">
                   <span className="inline-flex items-center gap-1.5 bg-red-500/10 text-red-400 text-xs font-semibold px-3 py-1 rounded-full animate-pulse">
-                    🔥 10% Off — Ends 26 July
+                    🔥 Year Sale — 10% Off
                   </span>
                   <span className="inline-flex items-center gap-1.5 bg-accent/10 text-accent text-xs font-semibold px-3 py-1 rounded-full">
                     <Sparkles className="w-3 h-3" /> Featured
@@ -114,10 +115,10 @@ export default function Pricing() {
                   <div className="text-left md:text-right">
                     <div className="flex items-baseline gap-3">
                       <span className="text-2xl text-foreground-muted line-through">
-                        <PriceCounter end={3500} />
+                        <PriceCounter end={1500} />
                       </span>
                       <div className="text-5xl md:text-6xl font-bold text-accent tracking-tight">
-                        <PriceCounter end={3150} />
+                        <PriceCounter end={1350} />
                       </div>
                     </div>
                     <p className="text-foreground-muted text-xs mt-1">One-time project price</p>
@@ -140,14 +141,12 @@ export default function Pricing() {
                   ))}
                 </div>
 
-                <motion.a
-                  href="#contact"
-                  className="block text-center py-3.5 rounded-xl font-semibold bg-accent text-slate-900 dark:text-white btn-shimmer shadow-lg shadow-accent/20"
-                  whileHover={{ scale: 1.02, boxShadow: "0 20px 40px -10px rgba(5,150,105,0.4)" }}
-                  whileTap={{ scale: 0.98 }}
+                <Link
+                  to="/contact"
+                  className="block text-center py-3.5 rounded-xl font-semibold bg-accent text-slate-900 dark:text-white btn-shimmer shadow-lg shadow-accent/20 hover:shadow-accent/30 transition-shadow"
                 >
                   <span className="relative z-10">Get a Quote</span>
-                </motion.a>
+                </Link>
               </div>
             </div>
           </motion.div>

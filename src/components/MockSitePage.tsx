@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { ArrowLeft, Phone, Mail, MapPin, Clock, Star, Dumbbell, Coffee, Wrench, Quote, ChefHat, Heart, Shield, Zap, User } from "lucide-react";
 
 const siteData: Record<string, {
@@ -245,9 +245,9 @@ export default function MockSitePage() {
       <div className="min-h-screen bg-slate-50 flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-4xl font-bold text-slate-900 mb-4">Site not found</h1>
-          <a href="#/" className="text-emerald-600 hover:text-emerald-700 font-semibold inline-flex items-center gap-2">
-            <ArrowLeft className="w-4 h-4" /> Back to home
-          </a>
+          <Link to="/portfolio" className="text-emerald-600 hover:text-emerald-700 font-semibold inline-flex items-center gap-2">
+            <ArrowLeft className="w-4 h-4" /> Back to portfolio
+          </Link>
         </div>
       </div>
     );
@@ -257,15 +257,9 @@ export default function MockSitePage() {
     <div className={`min-h-screen ${site.theme} page-enter`}>
       <div className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200">
         <div className="container mx-auto px-6 py-3 flex items-center justify-between">
-          <a href="#/" onClick={(e) => {
-            e.preventDefault();
-            window.scrollTo(0, 0);
-            document.documentElement.scrollTop = 0;
-            window.location.hash = '#/';
-            window.location.reload();
-          }} className="flex items-center gap-2 text-sm font-semibold text-slate-700 hover:text-emerald-600 transition-colors">
+          <Link to="/portfolio" className="flex items-center gap-2 text-sm font-semibold text-slate-700 hover:text-emerald-600 transition-colors">
             <ArrowLeft className="w-4 h-4" /> Back to Portfolio
-          </a>
+          </Link>
           <span className="text-sm text-slate-500 font-medium">{site.title} — Mock Preview</span>
         </div>
       </div>

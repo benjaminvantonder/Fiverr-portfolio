@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import { Code2, Heart } from 'lucide-react';
 
 const container = {
@@ -8,8 +9,17 @@ const container = {
 
 const itemVariants = {
   hidden: { opacity: 0, y: 15 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: [0.25, 0.1, 0.25, 1] } },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: [0.25, 0.1, 0.25, 1] as const } },
 };
+
+const quickLinks = [
+  { label: "Home", to: "/" },
+  { label: "About", to: "/about" },
+  { label: "Services", to: "/services" },
+  { label: "Portfolio", to: "/portfolio" },
+  { label: "Pricing", to: "/pricing" },
+  { label: "Contact", to: "/contact" },
+];
 
 export default function Footer() {
   return (
@@ -39,20 +49,16 @@ export default function Footer() {
             <motion.div variants={itemVariants}>
               <h4 className="text-lg font-bold mb-4">Quick Links</h4>
               <ul className="space-y-2">
-                {["Recent Work", "About", "Services", "Portfolio", "Testimonials", "Pricing", "Contact"].map((link) => {
-                  const href = "#" + link.toLowerCase().replace(/\s+/g, "-");
-                  return (
-                    <li key={link}>
-                      <motion.a
-                        href={href}
-                        className="text-slate-400 hover:text-emerald-400 transition-colors inline-block"
-                        whileHover={{ x: 4, color: "#34d399" }}
-                      >
-                        {link}
-                      </motion.a>
-                    </li>
-                  );
-                })}
+                {quickLinks.map((link) => (
+                  <li key={link.to}>
+                    <Link
+                      to={link.to}
+                      className="text-slate-400 hover:text-emerald-400 transition-colors inline-block"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </motion.div>
 

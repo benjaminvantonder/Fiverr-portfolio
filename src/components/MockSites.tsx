@@ -1,4 +1,17 @@
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import { Monitor, ArrowRight, ExternalLink } from "lucide-react";
+import StarfieldBackground from "./StarfieldBackground";
+
+const container = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.12 } },
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 30, scale: 0.97 },
+  visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] as const } },
+};
 
 const mockSites = [
   {
@@ -29,77 +42,99 @@ const mockSites = [
 
 export default function MockSites() {
   return (
-    <section id="mock-sites" className="relative py-24 bg-slate-50 overflow-hidden">
-      <div className="blur-orb w-[600px] h-[600px] bg-emerald-400 top-20 -left-60"></div>
-      <div className="blur-orb w-[500px] h-[500px] bg-cyan-400 bottom-20 -right-60"></div>
+    <section id="mock-sites" className="relative py-28 bg-surface overflow-hidden">
+      <StarfieldBackground count={600} color="#34d399" speed={0.02} opacity={0.3} />
 
       <div className="container mx-auto px-6 relative z-10">
-        <div className="text-center mb-16">
-          <span className="inline-flex items-center gap-2 bg-emerald-100 text-emerald-700 text-sm font-semibold px-4 py-2 rounded-full mb-4">
-            <Monitor className="w-4 h-4" /> Site Previews
+        <motion.div
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] as const }}
+        >
+          <span className="inline-flex items-center gap-2 bg-accent/10 text-accent text-xs font-semibold px-4 py-1.5 rounded-full mb-6">
+            <Monitor className="w-3.5 h-3.5" /> Site Previews
           </span>
-          <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
+          <motion.h2
+            className="text-4xl md:text-6xl font-bold text-foreground leading-tight"
+            initial={{ opacity: 0, y: 20, filter: "blur(4px)" }}
+            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.1 }}
+          >
             Possible Sites
-          </h2>
-          <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-            Click any mock to explore a fully designed site — see exactly what your business could look like.
-          </p>
-        </div>
+          </motion.h2>
+          <motion.p
+            className="text-lg text-foreground-muted max-w-3xl mx-auto mt-4"
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+          >
+            Click any mock to explore a fully designed site — see exactly what your business
+            could look like.
+          </motion.p>
+        </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <motion.div
+          className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto"
+          variants={container}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-60px" }}
+        >
           {mockSites.map((site) => (
-            <a
-              key={site.id}
-              href={`#/mock/${site.id}`}
-              className="mock-card group cursor-pointer block no-underline"
-              onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                window.scrollTo(0, 0);
-                document.documentElement.scrollTop = 0;
-                window.location.hash = `#/mock/${site.id}`;
-                window.location.reload();
-              }}
-            >
-              <div className="mock-card-inner bg-white rounded-2xl shadow-lg shadow-slate-200/60 border border-slate-100 overflow-hidden flex flex-col h-full">
-                <div className={`bg-gradient-to-br ${site.gradient} relative overflow-hidden`}>
-                  <div className="blur-orb w-48 h-48 bg-white/20 -top-20 -right-20"></div>
-                  <div className="blur-orb w-40 h-40 bg-white/10 -bottom-16 -left-16"></div>
-                  <div className="flex items-center gap-1.5 px-4 pt-3 pb-2">
-                    <div className="w-2.5 h-2.5 rounded-full bg-white/30"></div>
-                    <div className="w-2.5 h-2.5 rounded-full bg-white/30"></div>
-                    <div className="w-2.5 h-2.5 rounded-full bg-white/30"></div>
-                    <div className="ml-auto flex items-center gap-1 text-white/40 text-[10px] font-mono">
-                      <span>---</span>
+            <motion.div key={site.id} variants={cardVariants} className="group relative">
+              <div className="absolute -inset-[2px] bg-gradient-to-br from-emerald-500/20 via-transparent to-cyan-500/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm" />
+              <Link
+                to={`/mock/${site.id}`}
+                className="relative block h-full"
+              >
+                <div className="bg-surface-card rounded-2xl border border-boundary overflow-hidden card-hover hover:shadow-2xl hover:shadow-emerald-500/5 flex flex-col h-full">
+                  <div className={`bg-gradient-to-br ${site.gradient} relative overflow-hidden`}>
+                    <div className="blur-orb w-48 h-48 bg-white/20 -top-20 -right-20"></div>
+                    <div className="blur-orb w-40 h-40 bg-white/10 -bottom-16 -left-16"></div>
+                    <div className="flex items-center gap-1.5 px-4 pt-3 pb-2 relative z-10">
+                      <div className="w-2.5 h-2.5 rounded-full bg-white/30"></div>
+                      <div className="w-2.5 h-2.5 rounded-full bg-white/30"></div>
+                      <div className="w-2.5 h-2.5 rounded-full bg-white/30"></div>
+                      <div className="ml-auto flex items-center gap-1 text-white/40 text-[10px] font-mono">
+                        <span>---</span>
+                      </div>
+                    </div>
+                    <div className="px-4 pb-6 relative z-10">
+                      <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center mb-3">
+                        <ExternalLink className="w-6 h-6 text-white" />
+                      </div>
+                      <h3 className="text-2xl font-bold text-white">{site.title}</h3>
+                      <p className="text-white/70 text-sm mt-0.5">{site.tagline}</p>
                     </div>
                   </div>
-                  <div className="px-4 pb-6 relative z-10">
-                    <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center mb-3">
-                      <ExternalLink className="w-6 h-6 text-white" />
+                  <div className="p-5 flex flex-col flex-grow">
+                    <p className="text-foreground-muted text-sm leading-relaxed flex-grow">
+                      {site.description}
+                    </p>
+                    <div className="flex flex-wrap gap-1.5 mt-4 mb-4">
+                      {site.features.map((f, i) => (
+                        <span
+                          key={i}
+                          className="px-2.5 py-1 bg-surface-alt border border-boundary text-foreground-muted text-xs rounded-md font-medium"
+                        >
+                          {f}
+                        </span>
+                      ))}
                     </div>
-                    <h3 className="text-2xl font-bold text-white">{site.title}</h3>
-                    <p className="text-white/70 text-sm mt-0.5">{site.tagline}</p>
+                    <div className="flex items-center gap-1.5 text-sm font-semibold text-accent transition-colors border-t border-boundary pt-4">
+                      Explore This Site
+                      <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                    </div>
                   </div>
                 </div>
-                <div className="p-5 flex flex-col flex-grow">
-                  <p className="text-slate-600 text-sm leading-relaxed flex-grow">
-                    {site.description}
-                  </p>
-                  <div className="flex flex-wrap gap-1.5 mt-4 mb-4">
-                    {site.features.map((f, i) => (
-                      <span key={i} className="px-2.5 py-1 bg-surface-card border border-boundary text-foreground-muted text-xs rounded-md font-medium">
-                        {f}
-                      </span>
-                    ))}
-                  </div>
-                  <div className="flex items-center gap-1.5 text-sm font-semibold text-emerald-600 group-hover:text-emerald-700 transition-colors border-t border-slate-100 pt-4">
-                    Explore This Site <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-                  </div>
-                </div>
-              </div>
-            </a>
+              </Link>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

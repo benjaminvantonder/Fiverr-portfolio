@@ -5,12 +5,12 @@ import StarfieldBackground from "./StarfieldBackground";
 
 const reveal = {
   hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] } },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] as const } },
 };
 
 const contactItemVariants = {
   hidden: { opacity: 0, x: -15 },
-  visible: (i: number) => ({ opacity: 1, x: 0, transition: { duration: 0.4, delay: 0.1 * i, ease: [0.25, 0.1, 0.25, 1] } }),
+  visible: (i: number) => ({ opacity: 1, x: 0, transition: { duration: 0.4, delay: 0.1 * i, ease: [0.25, 0.1, 0.25, 1] as const } }),
 };
 
 export default function Contact() {
@@ -18,7 +18,7 @@ export default function Contact() {
     name: "",
     email: "",
     business: "",
-    package: "Business Website (R3,500)",
+    package: "Business Website (R1,350)",
     message: "",
   });
 
@@ -66,7 +66,7 @@ Message: ${message}`
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+            transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] as const }}
           >
             <span className="text-xs tracking-[0.2em] uppercase text-foreground-muted mb-4 block font-medium">
               Contact
@@ -249,7 +249,7 @@ Message: ${message}`
                       onBlur={() => setFocusedField(null)}
                       className="w-full px-4 py-3 bg-surface-card border border-boundary rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition-all"
                     >
-                      <option>Business Website (R3,500)</option>
+                      <option>Business Website (R1,350)</option>
                       <option>Monthly Care Plan</option>
                       <option>Just Have Questions</option>
                     </select>
