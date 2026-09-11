@@ -81,6 +81,8 @@ export default function Hero() {
 
       <div className="absolute inset-0 bg-gradient-to-b from-slate-950/60 via-transparent to-slate-950/80 pointer-events-none z-[1]" />
 
+      <div className="h-16 md:h-20 shrink-0" aria-hidden="true" />
+
       <div
         ref={textRef}
         className="hero-parallax relative z-10 flex-1 flex items-center container mx-auto px-6"
